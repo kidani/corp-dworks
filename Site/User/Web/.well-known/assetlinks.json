@@ -1,0 +1,14 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.wd_valley.hokatsu",
+            "sha256_cert_fingerprints": [
+                "86:B5:39:32:B1:E9:63:BF:20:63:76:38:67:F9:42:DD:B5:B7:32:2D:04:7F:B7:89:1E:C1:25:81:97:D2:6E:A1"
+            ]
+        }
+    }
+]

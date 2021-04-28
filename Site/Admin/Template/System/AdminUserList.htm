@@ -1,0 +1,53 @@
+<h1 class="title-page">管理ユーザー</h1>
+
+<p>
+    <a href="?p=System/AdminUser&mode=add">
+        <button type="button" class="btn btn-outline-secondary">新規登録</button>
+    </a>
+</p>
+
+<div class="table-responsive">
+  <table class="table table-striped tbl-vline-rl wv-w-50">
+    <thead>
+      <tr>
+        <th class="">ID</th>
+        <th class="wv-w-15">ログインID</th>
+        <th class="wv-w-25">名前</th>
+        <th class="">権限</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        %% foreach from=$data item=val %%
+            <tr>
+                <td>%% $val.adminId %%</td>
+                <td><a href="?p=System/AdminUser&mode=show&adminId=%% $val.adminId %%">%% $val.loginId %%</a></td>
+                <td>%% $val.name %%</td>
+                <td>%% $val.authType %%</td>
+                <td>
+                    <a href="?p=System/AdminUser&mode=show&adminId=%% $val.adminId %%" class="btn btn-outline-secondary">
+                        編集
+                    </a>
+                    <a href="?p=System/AdminUserList&mode=del&adminId=%% $val.adminId %%&page=%% $currentPage %%" class="btn btn-outline-secondary">
+                        削除
+                    </a>
+                </td>
+            </tr>
+        %% /foreach %%
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

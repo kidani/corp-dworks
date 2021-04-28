@@ -1,0 +1,197 @@
+%%* ヘッダーバナー *%%
+%%* 外側の div は絶対に必要なので注意！ないと body.d-flex の影響でこの要素全体が表示されなくなる。
+詳細は「CSS概要.txt - div の高さを height で指定しても高さがゼロになる問題」参照。*%%
+<div>%%* この div は重要なので削除しないこと！ *%%
+    <div class="page-head-img" style="height: 100vh;">
+        <div class="boxImage" style="background-image: url('/images/top/banner_head1.jpg'); background-position: center center;">
+            <div class="boxText">
+                <p class="boxText-title">人と環境に配慮したサービスを発信する<br></p>
+                <p class="boxText-catch">- eco-friendly & ecology -</p>
+                <br><br>
+                <p class="detail">
+                    人のためになり喜ばれるものをつくる<br>
+                    ものづくりで地方を活性化させる<br>
+                    いいものを全国発信し世に広める<br></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="main">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mb-5">
+
+                <h1 class="title-page mb-5">サービス</h1>
+
+                %%* エコ商品販売 *%%
+                <section>
+                    <div class="row box-service">
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInLeft animated, before: scrollReveal">
+                            <figure class="d-flex align-items-center justify-content-center">
+                                <img src="/images/service/goods/respr/respr_w600.png"
+                                     class="w-75" alt="NASA公認 空気浄化装置ReSPR（レスパー）"></figure>
+                        </div>
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInRight animated, before: scrollReveal">
+                            <h2 class="title-sub">エコ商品販売</h2>
+                            <p class="detail">
+                                NASA公認 空気浄化装置ReSPR（レスパー）や、世界に誇る光触媒技術 除菌・脱臭機ターンドケイなどの
+                                エコ関連デバイスや、冷凍焼き付けうなぎ、冷凍アボカドなど、エコにこだわった商品を販売しています。
+                            </p>
+                            <p><a href="/Service/Goods" class="btn btn-primary">詳しくみる</a></p>
+                        </div>
+                    </div>
+                </section>
+
+                %%* 保険活用 *%%
+                <section>
+                    <div class="row box-service">
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInLeft animated, before: scrollReveal">
+                            <h2 class="title-sub">保険活用</h2>
+                            <p class="detail">
+                                テキスト テキスト テキスト テキスト テキスト テキスト<br>
+                                テキスト テキスト テキスト テキスト テキスト テキスト<br>
+                                テキスト テキスト テキスト テキスト テキスト テキスト<br>
+                            </p>
+                            <p><a href="/Service/Insurance" class="btn btn-primary">詳しくみる</a></p>
+                        </div>
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInRight animated, before: scrollReveal">
+                            <figure class="d-flex align-items-center justify-content-center">
+                                <img src="/images/service/insurance/insurance_thumb.jpg"
+                                     class="w-75" alt="保険活用"></figure>
+                        </div>
+                    </div>
+                </section>
+
+                %%* 不動産活用 *%%
+                <section>
+                    <div class="row box-service">
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInLeft animated, before: scrollReveal">
+                            <figure class="d-flex align-items-center justify-content-center">
+                                <img src="/images/service/estate/estate_thumb.jpg" class="w-75"
+                                     alt="不動産活用"></figure>
+                        </div>
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInRight animated, before: scrollReveal">
+                            <h2 class="title-sub">不動産活用</h2>
+                            <p class="detail">
+                                テキスト テキスト テキスト テキスト テキスト テキスト<br>
+                                テキスト テキスト テキスト テキスト テキスト テキスト<br>
+                                テキスト テキスト テキスト テキスト テキスト テキスト<br>
+                            </p>
+                            <p><a href="/Service/Estate" class="btn btn-primary">詳しくみる</a></p>
+                        </div>
+                    </div>
+                </section>
+
+                %%* メディア運営 *%%
+                <section>
+                    <div class="row box-service">
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInLeft animated, before: scrollReveal">
+                            <h2 class="title-sub">メディア運営</h2>
+                            <p class="detail">
+                                「モノ」づくりを頑張っている人たちを応援するためのマッチングサイトや、
+                                病気やアレルギーでお悩みの方々のため健康食品のサイトを運営しています。
+                            </p>
+                            <p><a href="/Service/Media" class="btn btn-primary">詳しくみる</a></p>
+                        </div>
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInRight animated, before: scrollReveal">
+                            <figure class="d-flex align-items-center justify-content-center">
+                                <img src="/images/service/media/media_thumb.jpg" class="w-75"
+                                     alt="メディア運営"></figure>
+                        </div>
+                    </div>
+                </section>
+
+                %%* デザイン代行 *%%
+                <section>
+                    <div class="row box-service">
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInLeft animated, before: scrollReveal">
+                            <figure class="d-flex align-items-center justify-content-center">
+                                <img src="/images/service/design/design_thumb.jpg" class="w-75"
+                                     alt="デザイン代行"></figure>
+                        </div>
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInRight animated, before: scrollReveal">
+                            <h2 class="title-sub">デザイン代行</h2>
+                            <p class="detail">
+                                パンフレット・チラシ・POP・メニュー表などの販促・集客効果のあるデザインの作成</p>
+                            <p><a href="/Service/Design" class="btn btn-primary">詳しくみる</a></p>
+                        </div>
+                    </div>
+                </section>
+
+                %%* アウトソーシング事業 *%%
+                <section>
+                    <div class="row box-service">
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInRight animated, before: scrollReveal">
+                            <h2 class="title-sub">アウトソーシング事業</h2>
+                            <p class="detail">経営方針や課題・業務内容など、詳細なヒアリングを行い、
+                                プロジェクトに最適なプランを提案をさせていただきます。</p>
+                            <p><a href="/Service/Outsourcing" class="btn btn-primary">詳しくみる</a></p>
+                        </div>
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInLeft animated, before: scrollReveal">
+                            <figure class="d-flex align-items-center justify-content-center">
+                                <img src="/images/service/outsourcing/outsourcing.jpg" class="w-75"
+                                     alt="アウトソーシング事業"></figure>
+                        </div>
+                    </div>
+                </section>
+
+                %%* コンサルティング *%%
+                <section>
+                    <div class="row box-service">
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInLeft animated, before: scrollReveal">
+                            <figure class="d-flex align-items-center justify-content-center">
+                                <img src="/images/service/consulting/consulting_thumb.jpg" class="w-75"
+                                     alt="コンサルティング"></figure>
+                        </div>
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInRight animated, before: scrollReveal">
+                            <h2 class="title-sub">コンサルティング</h2>
+                            <p class="detail">
+                                補助金・助成金の申請代行、事務所家賃の見直し交渉など、各種コンサルティングを行っています。</p>
+                            <p><a href="/Service/Consulting" class="btn btn-primary">詳しくみる</a></p>
+                        </div>
+                    </div>
+                </section>
+
+                %%* ニュース *%%
+                <section>
+                    <h1 class="title-page">ニュース</h1>
+                    <ul class="list-group list-group-flush">
+                         %% foreach from=$dataNews key=key item=val %%
+                            <li class="list-group-item">
+                                <a href="?p=News/Detail&id=%% $val.id %%">
+                                    %% $val.openTime|date_format_ex:false %%
+                                    %% if $val.openTime|strtotime > $smarty.now-24*60*60*10 %%
+                                        <span class="mark-status-active">NEW</span>
+                                    %% /if %%
+                                    %% $val.title %%
+                                </a>
+                            </li>
+                        %% /foreach %%
+                    </ul>
+                </section>
+                %% if $dataNews|@count > 3 %%
+                    <a href="?p=News/List" class="btn btn-block btn-outline-secondary">もっとみる</a>
+                %% /if %%
+
+            </div>
+        </div>
+    </div>
+    <div class="vspace20"></div>
+
+    %%* お問い合わせバナー *%%
+    <div>%%* この div は重要なので削除しないこと！ *%%
+        <div class="page-head-img contact-link" style="height: 40vh;"
+             data-anijs="if: scroll, on:window, do: fadeInUp animated, before: scrollReveal">
+            <div class="boxImage h-short" style="background-image: url('/images/top/bg8.jpg'); background-position: center center;">
+                <div class="boxText">
+                    <p>各種お問い合わせはこちら</p>
+                    <p><a href="/Contact/Contact" class="btn btn-primary w-50">問い合わせる</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

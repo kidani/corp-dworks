@@ -1,0 +1,30 @@
+<h1 class="title-page">自治体サイト更新チェック［%% $data.title %%］</h1>
+
+<div class="table-responsive">
+    <table class="table wvTblKeyVal tbl-vline-rl">
+        <tbody>
+            <tr><td>ID              </td><td>%% $data.id %%             </td></tr>
+            <tr><td>タイトル        </td><td>%% $data.title %%          </td></tr>
+            <tr><td>URL             </td><td><a href="%% $data.url %%" target="_blank">%% $data.url %%</a></td></tr>
+            <tr><td>セレクタ        </td><td>%% $data.selector %%       </td></tr>
+            <tr><td>同期状態        </td><td>%% $data.chkStatus %%       </td></tr>
+            <tr><td>最終更新日時    </td><td>%% $data.updTime|date_format_ex %%</td></tr>
+            <tr><td>メモ            </td><td>%% $data.memo|nl2br %%       </td></tr>
+            <tr><td>HTML（旧）      </td><td>%% $data.htmlOld|nl2br %%   </td></tr>
+            <tr><td>HTML            </td><td>%% $data.html|nl2br %%      </td></tr>
+        </tbody>
+    </table>
+</div>
+<div class="vspace20"></div>
+
+%% if $htmlNew %%
+    <h5 class="title-line-left">更新内容</h5>
+    <div class="border border-info rounded p-2">
+        %% $htmlNew|nl2br %%
+    </div>
+    <div class="vspace20"></div>
+%% /if %%
+
+<a href="?p=%% $pageName %%&id=%% $data.id %%&mode=check" class="btn btn-primary">更新チェック</a>
+<a href="?p=%% $pageName %%&id=%% $data.id %%&mode=update" class="btn btn-primary">更新実行</a>
+<a href="?p=Support/CheckHtmlList" class="btn btn-outline-secondary">一覧へ戻る</a>

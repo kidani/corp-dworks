@@ -1,0 +1,114 @@
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+%%* meta タグ書き換え *%%
+<input type="hidden" name="metaTitle" value="%% $SITE_NAME %% | お問い合わせ">
+
+%%* ヘッダーバナー *%%
+<div>%%* この div は重要なので削除しないこと！ *%%
+    <div class="page-head-img" style="height: 40vh;">
+        <div class="boxImage h-short" style="background-image: url('/images/top/buildings1.jpg'); background-position: center center;">
+            <div class="boxText">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="main">
+
+    %%* パンくずリスト *%%
+    %% assign var=pageList value=['トップ' => "$SITE_URL", 'お問い合わせ' => ''] %%
+    %% include file="Master/BreadCrumb.htm" pageList=$pageList %%
+
+    %% if isset($mode) && $mode === 'finish' %%
+        <div class="container mt-100 pt-5">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="title-page">お問い合わせ</h1>
+                    <p>お客様からのお問い合わせを承りました。</p>
+                    <p>近日中に返答させていただきますので、今しばらくお待ち下さいませ。</p>
+                    <p class="mt-5"><a href="%% $SITE_URL %%" class="btn btn-primary">トップへ</a></p>
+                </div>
+            </div>
+        </div>
+    %% else %%
+        <div class="container mx-100">
+            <div class="row">
+                <div class="col-12">
+                    <section>
+                        <h1 class="title-page">お問い合わせ</h1>
+
+                        <p>弊社へのお問い合わせは下記フォームより必要事項をご記入の上、送信して下さい。<br>
+                            担当者より折り返しご連絡させていただきます。<br>
+                            弊社では、個人情報保護法に基づき、送信いただいたお客様のいかなる情報も
+                            無断で転用、使用することはありません。<br>
+                        </p>
+
+                        %% if $WV_DEBUG %%
+                            <div class="box-testInput">
+                                <div class="btn-test col-sm-6">テストデータセット</div>
+                                <div class="testInputVal">
+                                    <div data-name="namae">山田 太郎</div>
+                                    <div data-name="mailAddress">kidani@wd-valley.com</div>
+                                    <div data-name="tel">09012345678</div>
+                                    <div data-name="detail">テキスト テキスト テキスト テキスト テキスト</div>
+                                </div>
+                            </div>
+                        %% /if %%
+
+                        <form id="form-contact" role="form" action="/Contact/Contact" method="post">
+                            <input type="hidden" name="mode" value="send">
+
+                            %%* お名前 *%%
+                            <div class="form-group row">
+                                <label for="form-contact__namae" class="col-sm-4 offset-sm-1 col-form-label mark-require">お名前</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="namae" class="form-control"
+                                           id="form-contact__namae" placeholder="" value="%% $data.namae %%">
+                                </div>
+                            </div>
+
+                            %%* メールアドレス *%%
+                            <div class="form-group row">
+                                <label for="form-contact__email" class="col-sm-4 offset-sm-1 col-form-label mark-require">
+                                    メールアドレス
+                                </label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="mailAddress" class="form-control" id="form-contact__email"
+                                           placeholder="sample@gmail.com" value="%% $data.mailAddress %%">
+                                </div>
+                            </div>
+
+                            %%* お問い合わせ内容 *%%
+                            <div class="form-group row">
+                                <label for="form-contact__detail" class="col-sm-4 offset-sm-1 col-form-label mark-require">お問い合わせ内容</label>
+                                <div class="col-sm-6">
+                                 <textarea name="detail" class="form-control" rows="8" id="form-contact__detail"
+                                           placeholder="20文字以上、500文字以内で入力してください。"
+                                           aria-describedby="detailHelp">%% $data.detail %%</textarea>
+                                </div>
+                            </div>
+
+                            %%* Google reCAPTCHA 認証チェック *%%
+                            <div class="form-group row">
+                                <label for="form-contact__checkAuth" class="col-sm-4 offset-sm-1 col-form-label mark-require">認証チェック</label>
+                                <div class="col-sm-6">
+                                    <div id="form-contact__checkAuth" class="g-recaptcha"
+                                         data-callback="clearcall" data-sitekey="6LdatK0aAAAAACCLe2wHQXNeLvveOULCFakUKrOd"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-10 offset-sm-1">
+                                    <button type="submit" class="btn btn-block btn-primary" disabled>送信する</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </section>
+                </div>
+            </div>
+        </div>
+    %% /if %%
+
+</div>

@@ -1,0 +1,66 @@
+<h1 class="title-page">メール配信一覧</h1>
+
+<div class="table-responsive">
+    <table class="table table-striped tbl-vline-rl">
+        <thead>
+        <tr>
+            <th><span>ID</span></th>
+            <th><span>件名</span></th>
+            <th><span>本文</span></th>
+            <th><span>配信状態</span></th>
+            <th>
+                %% assign var=target value='insTime' %%
+                <span %% if $sort.sortCol === $target %% class="status-active" %% /if %%>
+                        <a href="?%% $sort.query %%&sortCol=%% $target %%">登録日時</a>
+                    </span>
+                %% if $sort.sortCol === $target %%<span class="order-mark">%% $sort.toggleMark %%</span>%% /if %%
+            </th>
+            <th>
+                %% assign var=target value='sendStartTime' %%
+                <span %% if $sort.sortCol === $target %% class="status-active" %% /if %%>
+                        <a href="?%% $sort.query %%&sortCol=%% $target %%">配信開始日時</a>
+                    </span>
+                %% if $sort.sortCol === $target %%<span class="order-mark">%% $sort.toggleMark %%</span>%% /if %%
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        %% foreach from=$data item=val %%
+            <tr>
+                <td>%% $val.id %%</td>
+                <td>
+                    <a href="?p=SendMail/Detail&id=%% $val.id %%">
+                        %% $val.subject %%
+                    </a>
+                </td>
+                <td>
+                    %% $val.body|cutLongText:70 %%
+                </td>
+                <td>
+                    %% $val.status %%
+                    %% if $val.status === '配信中' && $val.sendStartTime|strtotime < $smarty.now-1*60*60 %%
+                        %%* 配信開始後1時間以上経過している場合 *%%
+                        <span class="mark-status-active">要確認</span>
+                    %% elseif $val.status === '配信済' %%
+                        （件数：%% $val.sendCnt %%）
+                    %% /if %%
+                </td>
+                <td>%% $val.insTime|date_format_ex:true %%</td>
+                <td>%% $val.sendStartTime|date_format_ex:true %%</td>
+            </tr>
+        %% /foreach %%
+        </tbody>
+    </table>
+</div>
+<div class="caution">
+    ※配信状態に「注意」と表示されているものは配信開始から1時間以上経過しています。<br>
+</div>
+<div class="vspace30"></div>
+
+<p><a href="?p=SendMail/Detail" class="btn btn-outline-secondary">新規追加</a></p>
+
+%%* ページャ *%%
+<div class="box-pager">
+    %% assign var=showSummary value='1' %%
+    %% include file="Master/Pager.htm" %%
+</div>

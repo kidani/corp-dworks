@@ -1,0 +1,218 @@
+<h1 class="title-page">メール配信</h1>
+
+<form role="form" id="form-sendMail" action="?p=SendMail/Detail" method="post">
+
+    <h5 class="title-sub">配信設定</h5>
+
+    %%* ID *%%
+    <div class="form-group row m-1">
+        <label for="form-sendMail__id" class="col-sm-4 col-form-label wv-lbl-hform">ID</label>
+        <div class="col-sm-6 d-flex align-items-center">
+            <input type="hidden" name="id" value="%% $dataForm.id %%">
+            %% $dataForm.id %%
+        </div>
+    </div>
+
+    %%* 件名 *%%
+    <div class="form-group row m-1">
+        <label for="form-sendMail__subject" class="col-sm-4 col-form-label wv-lbl-hform">件名</label>
+        <div class="col-sm-6 d-flex align-items-center">
+            <input type="text" name="subject" class="form-control" id="form-sendMail__subject"
+                   placeholder="" value="%% $dataForm.subject %%" %% $authEdit %%>
+        </div>
+    </div>
+
+
+    %%* 本文 *%%
+    <div class="form-group row m-1">
+        <label for="form-sendMail__body" class="col-sm-4 col-form-label wv-lbl-hform">
+            本文（テキスト）
+        </label>
+        <div class="col-sm-6">
+            <textarea name="body" class="form-control" id="form-sendMail__body"
+                      rows="20" cols="20" %% $authEdit %%>%% $dataForm.body %%</textarea>
+        </div>
+    </div>
+
+    %%* 配信開始日時 *%%
+    <div class="form-group row m-1">
+        <label for="form-sendMail__sendStartTime" class="col-sm-4 col-form-label wv-lbl-hform">配信開始日時</label>
+        <div class="col-sm-6 d-flex align-items-center">
+            <div class="form-check form-check-inline">
+                <input type="text" name="sendStartTime" class="form-control" id="form-sendMail__sendStartTime"
+                       style="width: 200px;" autocomplete="off"
+                       %% $authEdit %% value="%% $dataForm.sendStartTime|date_format_ex:true %%">
+            </div>
+        </div>
+    </div>
+
+    %%* 配信終了日時 *%%
+    <div class="form-group row m-1">
+        <label for="form-sendMail__sendEndTime" class="col-sm-4 col-form-label wv-lbl-hform">配信終了日時</label>
+        <div class="col-sm-6 d-flex align-items-center">
+            <div class="form-check form-check-inline">
+                %% $dataForm.sendEndTime|date_format_ex:true %%
+                %% if $dataForm.sendEndTime %%
+                    （所要時間：%% $dataForm.duration %%）
+                %% /if %%
+            </div>
+        </div>
+    </div>
+
+    %%* 配信状態 *%%
+    <div class="form-group row m-1">
+        <label for="form-sendMail__status" class="col-sm-4 col-form-label wv-lbl-hform">配信状態</label>
+        <div class="col-sm-6 d-flex align-items-center">
+            %% $dataForm.status %%
+            %% if $dataForm.status === '配信中' && $dataForm.sendStartTime|strtotime < $smarty.now-1*60*60 %%
+                <span class="mark-status-active">配信開始から1時間以上経過</span>
+            %% elseif $dataForm.status === '配信済' %%
+                （件数：%% $dataForm.sendCnt %%）
+            %% /if %%
+        </div>
+    </div>
+
+    <div class="caution">
+        ※1通0.5秒間隔で配信されます。<br>
+    </div>
+
+    %%* ボタン *%%
+    <div class="form-group row mt-3 mb-5">
+        <div class="col-sm-12 d-flex align-items-center">
+            %% if $authEdit !== 'disabled' %%
+                <button type="submit" class="btn btn-primary mr-3" name="mode" value="update">配信登録</button>
+                <button type="submit" class="btn btn-primary mr-3 btnSendNow" name="mode" value="sendNow">今すぐ配信</button>
+            %% /if %%
+            %% if $dataForm.id %%
+                <a class="btn btn-outline-secondary mr-3" href="?p=SendMail/Detail&copyId=%% $dataForm.id %%">コピーして新規作成</a>
+            %% /if %%
+            <a class="btn btn-outline-secondary mr-3" href="?p=SendMail/List">一覧に戻る</a>
+        </div>
+    </div>
+
+    <h1 class="title-sub">配信対象の絞り込み</h1>
+
+    %%* メールで受信設定OFFのユーザーへの配信 *%%
+    <div class="form-group row m-1">
+        <label for="form-sendMail__includeSettingOff" class="col-sm-4 col-form-label wv-lbl-hform">
+            メールで受信設定OFFのユーザーへの配信
+        </label>
+        <div class="col-sm-6 d-flex align-items-center">
+            <div class="form-check form-check-inline">
+                %%*<input type="hidden" name="includeSettingOff" value="0">*%%
+                <input class="form-check-input" type="checkbox" name="includeSettingOff" value="1" %% $authEdit %%
+                       id="form-sendMail__includeSettingOff" %% if $dataForm.includeSettingOff === '1' %% checked %% /if %%>
+                <label class="form-check-label mr-2">配信する</label>
+            </div>
+        </div>
+    </div>
+
+    %%* PUSH通知可能ユーザーへの配信 *%%
+    <div class="form-group row m-1">
+        <label for="form-sendMail__includePushOK" class="col-sm-4 col-form-label wv-lbl-hform">PUSH通知可能ユーザーへの配信</label>
+        <div class="col-sm-6 d-flex align-items-center">
+            <div class="form-check form-check-inline">
+                %%*<input type="hidden" name="includePushOK" value="0">*%%
+                <input class="form-check-input" type="checkbox" name="includePushOK" value="1" %% $authEdit %%
+                       id="form-sendMail__includePushOK" %% if $dataForm.includePushOK === '1' %% checked %% /if %%>
+                <label class="form-check-label mr-2">配信する</label>
+            </div>
+        </div>
+    </div>
+
+    %% if $authEdit !== 'disabled' && $dataForm.id %%
+        %%* 配信前でデータ登録済みの場合 *%%
+        %%* テスト配信 *%%
+        <div class="form-group row m-1">
+            <label for="form-sendMail__sendTestUserId" class="col-sm-4 col-form-label wv-lbl-hform">テスト配信</label>
+            <div class="col-sm-6 d-flex align-items-center">
+                <div class="form-check form-check-inline">&nbsp;
+                    <input type="text" name="sendTestUserId" class="form-control"
+                           id="form-sendMail__sendTestUserId"
+                           style="width: 300px;"
+                           placeholder="ユーザーID1件のみ指定可能です。" value="%% $dataForm.sendTestUserId %%">
+                    <button type="submit" class="btn btn-primary ml-1" name="mode" value="sendTest">今すぐテスト配信</button>
+                </div>
+            </div>
+        </div>
+    %% /if %%
+
+    <div class="caution">
+        ※「woodvydummy...@gmail.com」などダミー会員は除外して配信されます。<br>
+        ※テスト配信では「配信登録」ボタンで確定した内容が配信されます。<br>
+    </div>
+
+    %%* ボタン *%%
+    <div class="form-group row mt-3 mb-4">
+        <div class="col-sm-12 d-flex align-items-center">
+            %% if $authEdit !== 'disabled' %%
+                <button type="submit" class="btn btn-primary" name="mode" value="updateSearch">絞り込み実行</button>
+                <div class="wv-font-lg">（配信対象件数：%% $totalCnt %%）</div>
+                <button type="submit" class="btn btn-primary ml-3" name="mode" value="csvDownload">CSVダウンロード</button>
+            %% /if %%
+        </div>
+    </div>
+
+</form>
+
+%% if $authEdit !== 'disabled' %%
+    %%* ページャ *%%
+    <div class="box-pager">
+        %% assign var=showSummary value='1' %%
+        %% include file="Master/Pager.htm" %%
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped tbl-vline-rl">
+            <thead>
+            <tr>
+                <th><span>ユーザーID</span></th>
+                %%* <th><span>ユーザー名</span></th> *%%
+                <th><span>ニックネーム</span></th>
+                <th><span>メールアドレス</span></th>
+                <th><span>環境</span></th>
+                <th><span>ステータス</span></th>
+                <th>
+                    %% assign var=target value='insTime' %%
+                    <span %% if $sort.sortCol === $target %% class="status-active" %% /if %%>
+                        <a href="?%% $sort.query %%&sortCol=%% $target %%">登録日時</a>
+                    </span>
+                    %% if $sort.sortCol === $target %%<span class="order-mark">%% $sort.toggleMark %%</span>%% /if %%
+                </th>
+                <th>
+                    %% assign var=target value='lastLoginTime' %%
+                    <span %% if $sort.sortCol === $target %% class="status-active" %% /if %%>
+                        <a href="?%% $sort.query %%&sortCol=%% $target %%">最終ログイン</a>
+                    </span>
+                    %% if $sort.sortCol === $target %%<span class="order-mark">%% $sort.toggleMark %%</span>%% /if %%
+                </th>
+                %%*<th><span>クローラ</span></th> *%%
+                %%*<th><span>アクセス数<br>（デイリー）</span></th> *%%
+            </tr>
+            </thead>
+            <tbody>
+            %% foreach from=$data item=val %%
+                <tr>
+                    <td style="font-size: 10px;">
+                        <a href="?p=Support/User&userId=%% $val.userId %%">%% $val.userId %%</a>
+                    </td>
+                    <td>%% $val.nickname %%                                     </td>
+                    <td>%% $val.mailAddress %%                                  </td>
+                    <td>%% $val.pf %%                                           </td>
+                    <td>%% $val.status %%                                       </td>
+                    <td>%% $val.insTime|date_format_ex:true %%         </td>
+                    <td>%% $val.lastLoginTime|date_format_ex:true %%   </td>
+                    %%* <td>%% $val.crawler %%                                  </td> *%%
+                    %%* <td>%% $val.accDailyCount %%                            </td> *%%
+                </tr>
+            %% /foreach %%
+            </tbody>
+        </table>
+    </div>
+
+    %%* ページャ *%%
+    <div class="box-pager">
+        %% assign var=showSummary value='1' %%
+        %% include file="Master/Pager.htm" %%
+    </div>
+%% /if %%

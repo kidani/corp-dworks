@@ -1,0 +1,55 @@
+<form id="form-login" role="form" action="?p=System/Login" method="post">
+    <input type="hidden" name="mode" value="login">
+
+    %%* ログインID *%%
+    <div class="form-group row">
+        <label for="form-login__loginId" class="col-sm-3 offset-sm-3 col-form-label">ID</label>
+        <div class="col-sm-3">
+            <input type="text" name="loginId" class="form-control" id="form-login__loginId" placeholder="" value="%% $data.loginId %%">
+        </div>
+    </div>
+
+    %%* パスワード *%%
+    <div class="form-group row">
+        <label for="form-login__password" class="col-sm-3 offset-sm-3 col-form-label">パスワード</label>
+        <div class="col-sm-3">
+            <input type="password" name="pass" class="form-control" id="form-login__password"
+                    value="%% $data.loginPass %%" autocomplete="off">
+            %%* オートコンプリート無効化対策（一部ブラウザで有効） *%%
+            <p style="display:none;"><input type="password" id="dummy1" name="dummy1" value=""></p>
+            <p style="display:none;"><input type="password" id="dummy2" name="dummy2" value=""></p>
+        </div>
+    </div>
+
+    %%* ボタン *%%
+    <div class="form-group row">
+        <div class="col-sm-6 offset-sm-3">
+            <button type="submit" class="btn btn-primary">ログイン</button>
+        </div>
+    </div>
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

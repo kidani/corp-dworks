@@ -1,0 +1,21 @@
+<h1 class="title-page">トップ</h1>
+<div class="top-icon-menu">
+    %% if $ADMIN_USER.authType === '管理' %%
+        <ul>
+            <li>
+                <i class="fas fa-chart-bar fa-5x"></i>
+                <p><a href="?p=System/BaseInfo">システム情報</a></p>
+            </li>
+            <li>
+                <i class="fa fa-user fa-5x"></i>
+                <p><a href="?p=System/AdminUserList">ログイン管理</a></p>
+            </li>
+        </ul>
+    %% /if %%
+    <ul>
+        <li>
+            <i class="fas fa-newspaper fa-5x"></i>
+            <p><a href="?p=News/List">ニュース</a></p>
+        </li>
+    </ul>
+</div>

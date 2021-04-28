@@ -1,0 +1,105 @@
+<h1 class="title-page">管理ユーザー</h1>
+
+<form role="form" id="form-registAdmin" action="?p=System/AdminUser" method="post">
+    <input type="hidden" name="mode" value="update">
+
+    %%* ID *%%
+    <div class="form-group row mb-1">
+        <label for="form-registAdmin__adminId" class="col-sm-4 col-form-label wv-lbl-hform">ID</label>
+        <div class="col-sm-6">
+            <input type="text" name="adminId" class="form-control" id="form-registAdmin__adminId"
+                   placeholder="" value="%% $data.adminId %%">
+        </div>
+    </div>
+
+    %%* ログインID *%%
+    <div class="form-group row mb-1">
+        <label for="form-registAdmin__loginId" class="col-sm-4 col-form-label wv-lbl-hform">
+            ログインID
+            <span class="annotation">（※半角英数3～32文字）</span>
+        </label>
+        <div class="col-sm-6">
+            <input type="text" name="loginId" class="form-control" id="form-registAdmin__loginId"
+                   placeholder="" value="%% $data.loginId %%">
+        </div>
+    </div>
+
+    %%* パスワード *%%
+    <div class="form-group row mb-1">
+        <label for="form-registAdmin__pass" class="col-sm-4 col-form-label wv-lbl-hform">
+            パスワード
+            <span class="annotation">（※半角英数3～32文字）</span>
+        </label>
+        <div class="col-sm-6">
+            <input type="text" name="pass" class="form-control" id="form-registAdmin__pass"
+                   placeholder="" value="%% if $data.adminId %%＊＊＊＊＊%% else %%%% /if %%">
+        </div>
+    </div>
+
+    %%* 名前 *%%
+    <div class="form-group row mb-1">
+        <label for="form-registAdmin__name" class="col-sm-4 col-form-label wv-lbl-hform">
+            名前
+            <span class="annotation">（※32文字以内）</span>
+        </label>
+        <div class="col-sm-6">
+            <input type="text" name="name" class="form-control" id="form-registAdmin__name"
+                   placeholder="" value="%% $data.name %%">
+        </div>
+    </div>
+
+    %%* 権限 *%%
+    <div class="form-group row mb-1">
+        <label for="form-registAdmin__authType" class="col-sm-4 col-form-label wv-lbl-hform">権限</label>
+        <div class="col-sm-6">
+            <select name="authType" class="form-control w-50" id="form-registAdmin__authType"
+                >
+                <option value=""     %% if ($data.authType === '') %%  selected %% /if %%>選択して下さい。</option>
+                <option value="管理" %% if ($data.authType === '管理') %%  selected %% /if %%>管理</option>
+                <option value="運用" %% if ($data.authType === '運用') %%  selected %% /if %%>運用</option>
+                <option value="外部" %% if ($data.authType === '外部') %%  selected %% /if %%>外部</option>
+            </select>
+        </div>
+    </div>
+
+    %%* 登録日時 *%%
+    <div class="form-group row mb-1">
+        <label for="form-registAdmin__insTime" class="col-sm-4 col-form-label wv-lbl-hform">登録日時</label>
+        <div class="col-sm-6">
+            <p class="mb-1 mt-2">%% $data.insTime|date_format:"%Y/%m/%d %H:%M" %%</p>
+        </div>
+    </div>
+
+    %%* 更新日時 *%%
+    <div class="form-group row mb-1">
+        <label for="form-registAdmin__updTime" class="col-sm-4 col-form-label wv-lbl-hform">登録日時</label>
+        <div class="col-sm-6">
+            <p class="mb-1 mt-2">%% $data.updTime|date_format:"%Y/%m/%d %H:%M" %%</p>
+        </div>
+    </div>
+    <div class="vspace10"></div>
+
+    %%* ボタン *%%
+    <div class="form-group row mt-3 mb-5">
+        <div class="col-sm-12 d-flex align-items-center">
+            <button type="submit" class="btn btn-primary mr-3">登録</button>
+            <span class="btn btn-outline-secondary"><a href="?p=System/AdminUserList">戻る</a></span>
+        </div>
+    </div>
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

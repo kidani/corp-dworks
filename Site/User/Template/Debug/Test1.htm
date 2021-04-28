@@ -1,0 +1,31 @@
+%%* meta タグ書き換え *%%
+<input type="hidden" name="metaRobots" value="noindex">
+
+%% if $WV_DEBUG %%
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+
+				%%* %% if !$pushMessage %%
+                    <p><a href="/Debug/Test1&targetOs=ios" class="btn btn-outline-secondary">iOSに通知</a></p>
+				    <p><a href="/Debug/Test1&targetOs=android" class="btn btn-outline-secondary">Androidに通知</a></p>
+				%% else %%
+                    <p>PUSH通知メッセージを送信しました。</p>
+					<br>
+                    <p>
+                        宛先：%% $USER_ID %%<br>
+                        メッセージ：%% $pushMessage %%<br>
+                    </p>
+				%% /if %% *%%
+
+			</div>
+		</div> 
+	</div>
+%%/if%%
+
+
+
+
+
+
+

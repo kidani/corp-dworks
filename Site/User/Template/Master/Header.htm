@@ -1,0 +1,73 @@
+%% if $SCREEN_SIZE === 'small' %%
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light pb-1">
+            %%* brand *%%
+            <section class="">
+                <a href="%% $SITE_URL %%" class="navbar-brand">
+                    <figure class="d-inline-block"><img src="/images/favicon_235.png" alt="%% $SITE_NAME %%"></figure>
+                </a>
+            </section>
+
+            %%* 戻るボタン *%%
+            <section>
+                <a href="javascript:void(0);" class="btn btn-primary btnHistoryBack"
+                   style="border: 1px solid white;">
+                    <i class="fas fa-chevron-circle-left"></i> BACK</a>
+            </section>
+
+            %%* SP版ハンバーガーメニュー *%%
+            %%* CSS側で aria-expanded の値 true／false に応じて SVG を変更しているので注意！ *%%
+            %%* クローズ時は Bootstrap 標準の ハンバーガーSVG、オープン時は×ボタンにしている。！ *%%
+            <section class="d-flex">
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </section>
+
+            %%* グローバルメニュー *%%
+            <div id="menu" class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/About">会社概要</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Service">サービス</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Service/Goods" >エコ商品販売</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Service/Media" >メディア運営</a></li>
+                    %%*<li class="nav-item"><a class="nav-link" href="/News/List">ニュース</a></li>*%%
+                    <li class="nav-item"><a class="nav-link" href="/Contact/Contact">お問い合わせ</a></li>
+                </ul>
+            </div>
+
+        </nav>
+    </header>
+    <div class="headerSpace" style="height: 58.797px;">
+        %%* ヘッダー分の余白 *%%
+    </div>
+%% else %%
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light px-5">
+
+            %%* brand *%%
+            <section class="site-catch">
+                <a href="%% $SITE_URL %%" class="navbar-brand">
+                    <figure class="d-inline-block"><img src="/images/favicon_235.png" alt="%% $SITE_NAME %%"></figure>
+                    <span>%% $SITE_NAME %%</span>
+                </a>
+            </section>
+
+            %%* グローバルメニュー *%%
+            %% if !isset($dataProfile.userId) %%%% $dataProfile.userId = null %%%% /if %%
+            <div id="menu" class="collapse navbar-collapse justify-content-end">
+                <ul class="navbar-nav d-flex align-items-center">
+                    %%* %% if $pageName && $pageName !== 'Top' %%
+                        <li class="nav-item"><a href="/" class="nav-link">ホーム</a></li>
+                    %% /if %% *%%
+                    <li class="nav-item"><a href="/Service" class="nav-link">サービス</a></li>
+                    <li class="nav-item"><a href="/Service/Goods" class="nav-link">エコ商品販売</a></li>
+                    <li class="nav-item"><a href="/Service/Media" class="nav-link">メディア運営</a></li>
+                    <li class="nav-item"><a href="/About" class="nav-link">会社概要</a></li>
+                    <li class="nav-item"><a href="/Contact/Contact" class="nav-link">お問い合わせ</a></li>
+                </ul>
+            </div>
+        </nav>
+
+    </header>
+%% /if %%

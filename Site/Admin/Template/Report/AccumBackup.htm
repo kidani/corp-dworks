@@ -1,0 +1,32 @@
+<h1 class="title-page">累計レポート</h1>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>PV数</th>
+            <th>INS数</th>
+            <th>入会数</th>
+            <th>退会数</th>
+            <th>口コミ数</th>
+            <th>質問数</th>
+            <th>回答数</th>
+        </tr>
+        </thead>
+        <tbody>
+        %% foreach from=$data item=val %%
+            <tr>
+                <td>%% $val.pvCount|number_format %%</td>
+                <td>%% $val.insCount|number_format %%</td>
+                <td>%% $val.addCount|number_format %%</td>
+                <td>%% $val.delCount|number_format %%</td>
+                <td>%% $val.reviewCount|number_format %%</td>
+                <td>%% $val.questionCount|number_format %%</td>
+                <td>%% $val.answerCount|number_format %%</td>
+            </tr>
+        %% /foreach %%
+        </tbody>
+    </table>
+</div>
+
+
+

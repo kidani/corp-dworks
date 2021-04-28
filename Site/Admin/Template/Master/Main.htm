@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+    %%* headタグ *%%
+    %% include file="Master/Head.htm" %%
+    <body>
+        %%* モーダル起動時背景 *%%
+        <div class="wv-modal-back"></div>
+        %%* ローディング画像 *%%
+        <div id="loading">
+            <img src="/imagesAdmin/loading.gif">
+        </div>
+
+        <div id="wrap-fix-footer">
+            %%* ヘッダー *%%
+            %% include file="Master/Header.htm" %%
+            <div class="container-fluid" id="main">
+                <div class="row">
+                    <div class="col-10 offset-1">
+                        %%* メッセージ *%%
+                        %% include file="Master/Message.htm" %%
+                        %%* メインテンプレート表示 *%%
+                        %% include file=$PAGE_MAIN_PATH %%
+                    </div>
+                </div>
+            </div>
+            %%* フッター *%%
+            %% include file="Master/Footer.htm" %%
+        </div>
+    </body>
+</html>

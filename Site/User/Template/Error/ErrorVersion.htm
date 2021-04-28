@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="title-page">バージョンエラー</h1>
+            %% if $PF === 'web' %%
+                %%* web の場合（現状未使用） *%%
+                %% if $osVersion %%
+                    <h2 class="title-sub">OSバージョン</h2>
+                    <p>
+                        %% $SITE_NAME %% を利用するには、
+                        iOS %% $UserConfig.WebOsVersion.ios %% 以降、
+                        Android %% $UserConfig.WebOsVersion.android %% 以降が必要です。
+                    </p>
+                %% /if %%
+            %% elseif $PF === 'ios' %%
+                %%* ios の場合 *%%
+                %% if $osVersion %%
+                    <h2 class="title-sub">OSバージョン</h2>
+                    <p>%% $SITE_NAME %% アプリを利用するには、iOS %% $UserConfig.osVersion.ios %% 以降が必要です。</p>
+                    <p>携帯のOSをバージョンアップするか、ブラウザにてご利用下さい。</p>
+                %% /if %%
+                %% if $versionCode %%
+                    <h2 class="title-sub">アプリバージョン</h2>
+                    %%*<p>アプリを最新バージョンにアップデートして下さい。</p>*%%
+                    <p>アプリをバージョン %% $UserConfig.AppVersion.ios %% 以降にアップデートして下さい。</p>
+                    <div class="vspace20"></div>
+                    <p><a href="https://itunes.apple.com/jp/app/id1479691962">App Storeへ</a></p>
+                    <p>※もしまだバージョン %% $UserConfig.AppVersion.ios %%がストアで公開されていない場合は、
+                        数時間以内に公開予定ですのでお待ちください。</p>
+                %% /if %%
+            %% elseif $PF === 'android' %%
+                %%* android の場合 *%%
+                %% if $osVersion %%
+                    <p>%% $SITE_NAME %% アプリを利用するには、Android %% $UserConfig.osVersion.android %% 以降が必要です。</p>
+                    <p>携帯のOSをバージョンアップするか、ブラウザにてご利用下さい。</p>
+                %% /if %%
+                %% if $versionCode %%
+                    <h2 class="title-sub">アプリバージョン</h2>
+                    %%*<p>アプリを最新バージョンにアップデートして下さい。</p>*%%
+                    <p>アプリをバージョン %% $UserConfig.AppVersion.android %% 以降にアップデートして下さい。</p>
+                    <div class="vspace20"></div>
+                    %%* Google Play アプリ *%%
+                    %%* ブラウザ *%%
+                    <p><a href="https://play.google.com/store/apps/details?id=com.wd_valley.hokatsu">Google Play へ</a></p>
+                    <p>※もしまだバージョン %% $UserConfig.AppVersion.android %%がストアで公開されていない場合は、
+                        数時間以内に公開予定ですのでお待ちください。</p>
+                %% /if %%
+            %% /if %%
+        </div>
+    </div>
+</div>

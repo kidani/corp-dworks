@@ -1,0 +1,40 @@
+<h1 class="title-page">自治体サイト更新チェック</h1>
+
+<div class="table-responsive">
+    <table class="table table-striped tbl-vline-rl">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>タイトル</th>
+            <th>URL</th>
+            <th>セレクタ</th>
+            <th>同期状態</th>
+            <th>最終更新日時</th>
+        </tr>
+        </thead>
+        <tbody>
+        %% foreach from=$data item=val %%
+            <tr>
+                <td>%% $val.id %%</td>
+                <td><a href="?p=Support/CheckHtml&id=%% $val.id %%">%% $val.title %%</a></td>
+                <td><a href="%% $val.url %%" target="_blank">%% $val.url %%</a></td>
+                <td>%% $val.selector %%</td>
+                <td>
+                    %% if $val.chkStatus|strstr:'更新' %%
+                        %% assign var=classColor value='text-danger' %%
+                    %% else %%
+                        %% assign var=classColor value='' %%
+                    %% /if %%
+                    <span class="%% $classColor %%">%% $val.chkStatus %%</span>
+                </td>
+                <td>%% $val.updTime|date_format_ex %%</td>
+            </tr>
+        %% /foreach %%
+        </tbody>
+    </table>
+</div>
+
+
+
+
+

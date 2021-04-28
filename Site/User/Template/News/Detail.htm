@@ -1,0 +1,40 @@
+%%* meta タグ書き換え *%%
+<input type="hidden" name="metaTitle" value="%% $SITE_NAME %% | %% $data.title %%">
+<input type="hidden" name="metaDescription" value="%% $data.title %% %% $metaDescriptionMin %%">
+<input type="hidden" name="metaKeywords" value="ニュース,%% $metaKeywordsMin %%">
+<input type="hidden" name="metaUrl" value="%% $SITE_URL %%/%% $pageName %%?id=%% $data.id %%">
+
+%%* ヘッダーバナー *%%
+<div>%%* この div は重要なので削除しないこと！ *%%
+    <div class="page-head-img" style="height: 40vh;">
+        <div class="boxImage h-short" style="background-image: url('/images/news/news_banner_header2.jpg'); background-position: center center;">
+            <div class="boxText">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="main">
+
+    %%* パンくずリスト *%%
+    %% assign var=pageList value=['トップ' => "$SITE_URL", 'ニュース一覧' => "/News/List", 'ニュース' => ''] %%
+    %% include file="Master/BreadCrumb.htm" pageList=$pageList %%
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h1 class="title-page">%% $data.title %%</h1>
+                <small class="d-flex align-items-center justify-content-end">
+                    <i class="fa fa-clock"></i>公開日：%% $data.openTime|date_format_ex:false %%
+                </small>
+                <div class="mb-5">%% $data.detail %%</div>
+
+                <p><a href="/News/List" class="btn btn-outline-secondary">ニュース一覧へ</a></p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

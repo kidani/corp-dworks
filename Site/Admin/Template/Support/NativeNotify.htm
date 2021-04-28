@@ -1,0 +1,102 @@
+<h1 class="title-page">お知らせ通知（アプリPUSH通知）</h1>
+
+<form role="form" id="form-notify" action="?p=Support/NativeNotify" method="post">
+
+    %%* 通知タイトル *%%
+    <div class="form-group row mb-1">
+        <label for="form-notify__title" class="col-sm-4 col-form-label wv-lbl-hform">通知タイトル</label>
+        <div class="col-sm-6">
+            <input type="text" name="title" class="form-control" id="form-notify__title"
+                   style="width: 350px;" placeholder="20文字以内で入力してください。" value="%% $curParam.title %%">
+        </div>
+    </div>
+
+    %%* 通知内容 *%%
+    <div class="form-group row mb-1">
+        <label for="form-notify__detail" class="col-sm-4 col-form-label wv-lbl-hform mark-require">
+            通知内容</label>
+        <div class="col-sm-6">
+            <textarea name="detail" class="form-control" id="form-notify__detail" cols="10" rows="5"
+                      placeholder="200文字以内で入力してください。">%% $curParam.detail %%</textarea>
+        </div>
+    </div>
+
+    %%* リンクページ識別子 *%%
+    <div class="form-group row mb-1">
+        <label for="form-notify__linkPage" class="col-sm-4 col-form-label wv-lbl-hform">リンクページ（お知らせ一覧：Info/AlertList）</label>
+        <div class="col-sm-6">
+            <input type="text" name="linkPage" class="form-control" id="form-notify__linkPage"
+                   style="width: 350px;" placeholder="" value="%% $curParam.linkPage %%">
+        </div>
+    </div>
+
+    %%* 送信対象ユーザー *%%
+    <div class="form-group row">
+        <label for="form-notify__sendType" class="col-sm-4 col-form-label wv-lbl-hform mark-require">送信対象ユーザー</label>
+        <div class="col-sm-6">
+            <input type="radio" name='sendType' value="all" %% if $curParam.sendType === 'all' %%checked%% /if %%>全員&nbsp;&nbsp;
+            <input type="radio" name='sendType' value="one" %% if $curParam.sendType === 'one' %%checked%% /if %%>指定ユーザーIDのみ&nbsp;&nbsp;
+            <input type="text" name="userId" class="form-control" id="form-notify__sendType"
+                   style="width: 300px; display: inline-block; "
+                   placeholder="ユーザーID1件のみ入力" value="%% $curParam.userId %%">
+        </div>
+    </div>
+
+    %%*<script>
+        $(function(){
+            // FIXME：テスト
+            $('[name="userId"]').val('ghfih3opoh2jqvvvouc0fha7i7');
+            $('[name="detail"]').val('ああああ いいいい うううう');
+        });
+    </script>*%%
+
+    <p class="help-aster mb-1">※お知らせ通知はアプリ登録ユーザー以外には送信されません。</p>
+    <p class="help-aster mb-1">※リンクページはプッシュ通知クリック時の遷移先になります。
+        遷移させたいページの識別子（%% $SITE_URL %%?p=＜この値＞）を設定して下さい。</p>
+    <p class="help-aster mb-1">※トップページに遷移させたい場合はリンクページ欄を空にして下さい。</p>
+    %%* ボタン *%%
+    <div class="form-group row mt-2">
+        <div class="col-sm-10">
+            <button type="submit" name="mode" value="send" class="btn btn-primary">送信</button>
+        </div>
+    </div>
+
+</form>
+<div class="vspace20"></div>
+
+<div class="table-responsive">
+    <table class="table table-striped tbl-vline-rl">
+        <thead>
+        <tr>
+            <th style="width: 150px;"><span>送信時間</span></th>
+            <th style="width: 300px;"><span>タイトル</span></th>
+            <th><span>送信内容</span></th>
+            <th><span>リンクページ</span></th>
+            <th style="width: 150px;"><span>送信成功数<br>（iOS）</span></th>
+            <th style="width: 150px;"><span>送信成功数<br>（Android）</span></th>
+            <th style="width: 150px;"><span>送信失敗数<br>（iOS）</span></th>
+            <th style="width: 150px;"><span>送信失敗数<br>（Android）</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        %% foreach from=$data item=val %%
+            <tr>
+                <td>%% $val.insTime|date_format:'%Y/%m/%d %H:%M' %%   </td>
+                <td>%% $val.title %%                                 </td>
+                <td>%% $val.detail %%                                 </td>
+                <td>%% $val.linkPage %%                               </td>
+                <td>%% $val.iosOkCnt %%                               </td>
+                <td>%% $val.androidOkCnt %%                           </td>
+                <td>%% $val.iosNgCnt %%                               </td>
+                <td>%% $val.androidNgCnt %%                           </td>
+            </tr>
+        %% /foreach %%
+        </tbody>
+    </table>
+</div>
+
+%%* ページャ *%%
+<div class="box-pager">
+    %% assign var=showSummary value='1' %%
+    %% include file="Master/Pager.htm" %%
+</div>

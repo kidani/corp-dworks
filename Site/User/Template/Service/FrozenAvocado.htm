@@ -1,0 +1,55 @@
+%%* meta タグ書き換え *%%
+<input type="hidden" name="metaTitle" value="%% $SITE_NAME %% | 冷凍アボカド">
+<input type="hidden" name="metaKeywords" value="冷凍アボカド,%% $metaKeywordsMin %%">
+%%*<input type="hidden" name="metaDescription" value="冷凍アボカド">*%%
+
+%%* ヘッダーバナー *%%
+<div>%%* この div は重要なので削除しないこと！ *%%
+    <div class="page-head-img" style="height: 40vh;">
+        <div class="boxImage h-short" style="background-image: url('/images/service/goods/frozen_avocado/avocado_banner_head.jpg'); background-position: center center;">
+            <div class="boxText">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="main">
+
+    %%* パンくずリスト *%%
+    %% assign var=pageList value=['トップ' => "$SITE_URL", 'サービス一覧' => "/Service", 'エコ商品販売' => "/Service/Goods", '冷凍アボカド' => ''] %%
+    %% include file="Master/BreadCrumb.htm" pageList=$pageList %%
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="title-page">冷凍アボカド</h1>
+                <p>準備中です。</p>
+
+                <section>
+                    %%* 一棟買い専門不動産投資情報サイト *%%
+                    %%*<div class="row box-service">
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInLeft animated, before: scrollReveal">
+                            <figure class="d-flex align-items-center justify-content-center">
+                                <img src="/images/service/XXXXXXXXXXXXXXX/XXXXXXXXXXXXXXX.jpg"
+                                     class="w-75" alt="XXXXXXXXXXXXXXX"></figure>
+                        </div>
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInRight animated, before: scrollReveal">
+                            <h2 class="title-sub">XXXXXXXXXXXXXXX</h2>
+                            <p class="detail">
+                                テキスト テキスト テキスト テキスト テキスト テキスト テキスト 。
+                            </p>
+                        </div>
+                    </div>*%%
+                </section>
+
+                %%*<p><a href="/Contact/Contact" class="btn-lg btn-block btn-primary text-center">問い合わせる</a></p>*%%
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

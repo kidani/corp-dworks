@@ -1,0 +1,96 @@
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=%% $GMAPKEY %%&v=3.exp&sensor=false"></script>
+
+%%* meta タグ書き換え *%%
+<input type="hidden" name="metaTitle" value="%% $SITE_NAME %% | 会社概要">
+<input type="hidden" name="metaKeywords" value="会社概要,%% $metaKeywordsMin %%">
+
+%%* ヘッダーバナー *%%
+<div>%%* この div は重要なので削除しないこと！ *%%
+    <div class="page-head-img" style="height: 40vh;">
+        <div class="boxImage h-short"
+             style="background-image: url('/images/top/office1.jpg');">
+            <div class="boxText">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="main">
+
+    %%* パンくずリスト *%%
+    %% assign var=pageList value=['トップ' => "$SITE_URL", '会社概要' => ''] %%
+    %% include file="Master/BreadCrumb.htm" pageList=$pageList %%
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="title-page">会社概要</h1>
+                <table class="table mb-5">
+                    <tr>
+                        <td style="width: 30%;">社名</td>
+                        <td>%% $COMPANY.name %%</td>
+                    </tr>
+                    <tr>
+                        <td>代表取締役社長</td>
+                        <td>%% $COMPANY.admin %%</td>
+                    </tr>
+                    %%*<tr>
+                        <td>設立</td>
+                        <td>2014年1月30日</td>
+                    </tr>*%%
+                    <tr>
+                        <td>事業内容</td>
+                        <td>エコ関連商品販売、メディア運営、不動産・保険など各種コンサルティング</td>
+                    </tr>
+                    <tr>
+                        <td>古物商許可証</td>
+                        <td>東京都公安委員会 304381806991号</td>
+                    </tr>
+                    <tr>
+                        <td>メールアドレス</td>
+                        <td>%% $COMPANY.mail %%</td>
+                    </tr>
+                </table>
+
+                %%* 東京本社 *%%
+                <h2 class="title-sub">東京本社</h2>
+                <table class="table">
+                    <tr>
+                        <td>所在地</td>
+                        <td>〒%% $COMPANY.zip %%<br>%% $COMPANY.address %%</td>
+                    </tr>
+                    <tr>
+                        <td>TEL・FAX</td>
+                        <td>%% $COMPANY.tel %%</td>
+                    </tr>
+                </table>
+                %%* GOOGLE MAP 東京本社 *%%
+                <div class="col-sm-12 mb-5" data-anijs="if: scroll, on:window, do: zoomInRight animated, before: scrollReveal">
+                    <div id="map">
+                        <iframe src="https://maps.google.co.jp/maps?&output=embed&q=%% $COMPANY.address %%"></iframe>
+                    </div>
+                </div>
+
+                %%* アグリスGQ？ *%%
+                <h2 class="title-sub">福岡支店</h2>
+                <table class="table">
+                    <tr>
+                        <td>所在地</td>
+                        <td>〒830-0027<br>福岡県久留米市長門石3丁目12番26号</td>
+                    </tr>
+                    <tr>
+                        <td>TEL・FAX</td>
+                        <td>0942-39-3967</td>
+                    </tr>
+                </table>
+                %%* GOOGLE MAP 福岡支店 *%%
+                <div class="col-sm-12 mb-5" data-anijs="if: scroll, on:window, do: zoomInRight animated, before: scrollReveal">
+                    <div id="map">
+                        <iframe src="https://maps.google.co.jp/maps?&output=embed&q=福岡県久留米市長門石3丁目12番26号"></iframe>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

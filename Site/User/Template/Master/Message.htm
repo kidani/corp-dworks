@@ -1,0 +1,53 @@
+%% if $MASTER_MESSAGE.message.error || $MASTER_MESSAGE.message.warning || $MASTER_MESSAGE.message.info %%
+	<div class="container">
+		<div class="row">
+			<div class="col-8 offset-2">
+					
+				%% if $MASTER_MESSAGE.message.error %%
+					<h1 class="title-page">エラー</h1>
+				%% /if %%
+		
+				<div class="master-message">
+					%% foreach from=$MASTER_MESSAGE.message.debug item=value %%
+						<div class="master-message-debug"><p class="mb-0">%% $value %%</p></div>
+					%% /foreach %%	
+					%% foreach from=$MASTER_MESSAGE.message.error item=value %%
+						<div class="master-message-error"><p class="mb-0">%% $value %%</p></div>
+					%% /foreach %%	
+					%% foreach from=$MASTER_MESSAGE.message.warning item=value %%
+						<div class="master-message-warning"><p class="mb-0">%% $value %%</p></div>
+					%% /foreach %%
+					%% foreach from=$MASTER_MESSAGE.message.info item=value %%
+						<div class="master-message-info"><p class="mb-0">%% $value %%</p></div>
+					%% /foreach %%
+			    </div>
+	
+				%% if $MASTER_MESSAGE.message.error %%
+		        	%% if ($MASTER_MESSAGE.linkPage === 'Back') %%
+						<input class="btn btn-outline-secondary btn-sm btn-block"
+							type="button" value="戻る" onClick="history.back()">
+		        	%% else %%
+		        		<a class="btn btn-outline-secondary btn-sm btn-block"
+						    href="/%% $MASTER_MESSAGE.linkPage %%">戻る</a>
+		        	%% /if %%
+				%% /if %%
+		
+	        </div>
+	    </div>
+	</div>
+%% /if %%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

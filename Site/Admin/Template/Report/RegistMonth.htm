@@ -1,0 +1,81 @@
+<h1 class="title-page">入退会（月別）</h1>
+
+<form role="form" id="form-search" action="?p=Report/RegistMonth" method="POST">
+
+    %%* 年 *%%
+    <div class="form-group row mb-1">
+        <label for="form-search__year" class="col-sm-4 col-form-label wv-lbl-hform">年</label>
+        <div class="col-sm-6">
+            <div class="btn-group btn-group-toggle mr-3" data-toggle="buttons">
+                %% foreach from=$arrYear key=key item=val %%
+                    <label class="btn btn-outline-secondary btn-year %% if $curParam.year == $val %% active %% /if %%">
+                        <input type="radio" name="year" value="%% $val %%" id="form-search__year_%% $key %%"
+                                %% if $curParam.year == $val %% checked %% /if %%>%% $val %%
+                    </label>
+                %% /foreach %%
+            </div>
+            <a href="?p=Report/Regist" class="btn btn-outline-secondary">日別</a>&nbsp;
+            <a href="?p=Report/RegistAccum" class="btn btn-outline-secondary">全期間累計</a>&nbsp;
+        </div>
+    </div>
+
+    %%* ボタン *%%
+    <div class="form-group row my-3">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">検索実行</button>
+            <button type="button" class="btn btn-outline-secondary"><a href="?p=Report/Regist">リセット</a></button>
+        </div>
+    </div>
+
+</form>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>日付</th>
+            <th>INS数</th>
+            <th>入会数</th>
+            <th>退会数</th>
+        </tr>
+        </thead>
+        <tbody>
+        %% foreach from=$data item=val %%
+            <tr>
+                <td>%% $val.ym|regex_replace:"/-/":"/" %%</td>
+                <td>
+                    %% if $val.insCount %%
+                        %% $val.insCount %%
+                    %% /if %%
+                </td>
+                <td>%% $val.addCount %%</td>
+                <td>%% $val.delCount %%</td>
+            </tr>
+        %% /foreach %%
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

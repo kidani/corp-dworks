@@ -1,0 +1,159 @@
+<h1 class="title-page">ユーザー情報</h1>
+<div class="table-responsive">
+    <table class="table wvTblKeyVal">
+        <tbody>
+            <tr>
+                <td class="wv-lbl w-25">ユーザーID</td>
+                <td>
+                    %% if $data.fakeUser %%
+                        <span class="fakeUser">%% $data.userId %%</span>（フェイクユーザー）
+                    %% else %%
+                        %% $data.userId %%
+                    %% /if %%
+                </td>
+            </tr>
+            <tr><td>ニックネーム</td>                       <td>%% $data.nickname %%</td></tr>
+            <tr><td>メールアドレス</td>                     <td>%% $data.mailAddress %%</td></tr>
+            <tr><td>画像ディレクトリ</td>                   <td>%% $data.userDir %%</td></tr>
+            <tr>
+                <td>
+                    アクセス環境
+                    <a data-toggle="tooltip"
+                       title="メイン環境は、アプリ未インストール → web、
+                                    iOS のみインストール → ios、Android のみインストール → android、
+                                    両方ともインストール → ios と識別しています。">
+                        <i class="fa fa-question-circle"></i>
+                    </a>
+                </td>
+                <td>
+                    <div>メイン環境：%% $data.pf %%</div>
+                    <div>iOS UUID：%% $data.iosUid %%</div>
+                    <div>Android UUID：%% $data.androidUid %%</div>
+                    %%*
+                    <small class="form-text text-muted">
+                        ※メイン環境は、アプリ未インストール → web、
+                          iOS のみインストール → ios、Android のみインストール → android、
+                          両方ともインストール → ios と識別しています。
+                    </small>
+                     *%%
+                </td>
+            </tr>
+            <tr>
+                <td>会員ステータス</td>
+                <td>
+                    %% $data.status %%
+                    %%*
+                    %% if $data.status === '登録済' %%&nbsp;&nbsp;
+                        <a href="?p=Support/User&mode=update&status=強制退会済&userId=%% $data.userId %%"
+                           class="btn btn-outline-secondary confirmRegist">強制退会</a>
+                        <span class="confirmMessage">
+                            このユーザーの会員ステータスを「強制退会済」にしていいですか？
+                        </span>
+                    %% /if %%
+                     *%%
+                </td>
+            </tr>
+            <tr><td>登録日時</td>                           <td>%% $data.insTime|date_format:"%Y-%m-%d %H:%M" %%</td></tr>
+            <tr><td>更新日時</td>                           <td>%% $data.updTime|date_format:"%Y-%m-%d %H:%M" %%</td></tr>
+            <tr><td>最終ログイン日時</td>                   <td>%% $data.lastLoginTime|date_format:"%Y-%m-%d %H:%M" %%</td></tr>
+            %%*
+            <tr>
+                <td>電話番号</td>
+                <td>
+                    %% $data.tel %%（認証：%% if $data.authCheck === '1' %%済%% else %%未%% /if %%）
+                </td>
+            </tr>
+            <tr><td>認証実行回数</td>                       <td>%% $data.authCheckCnt %%</td></tr>
+            *%%
+            <tr><td>プロフィール</td>                       <td>%% $data.profile %%</td></tr>
+            %%*
+            <tr>
+                <td>住所</td>
+                <td>
+                    %% foreach from=$address key=key item=val %%
+                        <div>
+                            No.%% $key+1 %%
+                            %% $val.sei %%
+                            %% $val.mei %%
+                            (%% $val.seiKana %% %% $val.meiKana %%)
+                            〒%% $val.zip %%
+                            %% $val.addressFull %%
+                        </div>
+                    %% /foreach %%
+                </td>
+            </tr>
+            <tr>
+                <td>支払い方法</td>
+                <td>
+                    %% foreach from=$pay key=key item=val %%
+                        No.%% $key+1 %%
+                        %% $val.payType %%
+                        %% $val.brand %%
+                        下4桁：%% $val.last4 %%
+                        有効期限：%% $val.expireYm %%
+                        カスタマーID：%% $val.customerId %%
+                        カードID：%% $val.cardId %%
+                        <br>
+                    %% /foreach %%
+                </td>
+            </tr>
+            *%%
+            <tr><td>現在のお知らせ通知数</td>               <td>%% $data.alertCnt %%</td></tr>
+            %%*<tr><td>タスクの数</td>                      <td>%% $data.taskCnt %%</td></tr>*%%
+            %%*<tr><td>所持ポイント</td>                    <td>%% $data.point|number_format %%</td></tr>*%%
+            %%*<tr><td>ポイント総計</td>                    <td>%% $data.pointTotal|number_format %%</td></tr>*%%
+            <tr>
+                <td>メール通知</td>
+                <td>
+                    <div>口コミ更新時の通知：%% $data.reviewUpdate %%</div>
+                    <div>Q & A更新時の通知：%% $data.qaUpdate %%</div>
+                    <div>仲間更新時の通知：%% $data.followUpdate %%</div>
+                </td>
+            </tr>
+            <tr>
+                <td>アプリ通知</td>
+                <td>
+                    <div>口コミ更新時の通知：%% $data.reviewUpdatePush %%</div>
+                    <div>Q & A更新時の通知：%% $data.qaUpdatePush %%</div>
+                    <div>仲間更新時の通知：%% $data.followUpdatePush %%</div>
+                </td>
+            </tr>
+            %%*
+            <tr>
+                <td>
+                    操作制限（不正対策）
+                    <i class="fa fa-question-circle fa-1x pop-help"></i>
+                    <div class="arrow-box" left="-50">
+                        ●監視対象<br>
+                            現状は特に制限はありません。監視対象としてのマークに利用してください。<br>
+                        ●取引制限<br>
+                            出品、ポイント交換、振込申請ができなくなります。<br>
+                            ※取引制限したユーザーには、サポートでの対応を進めてください。<br>
+                    </div>
+                </td>
+                <td>
+                    <form action="?p=Support/User&mode=update&userId=%% $data.userId %%" method="post" id="form_restriction"></form>
+                    <select name="restriction" form="form_restriction" class="form-control" style="width: 150px; display: inline-block;">
+                        <option value=""            %% if !$data.restriction                %% selected %% /if %%>制限なし  </option>
+                        <option value="監視対象"    %% if $data.restriction === '監視対象'  %% selected %% /if %%>監視対象  </option>
+                        <option value="取引制限"    %% if $data.restriction === '取引制限'  %% selected %% /if %%>取引制限  </option>
+                    </select>
+                    <input type="submit" form="form_restriction" value="登録" class="btn btn-outline-secondary">
+                </td>
+            </tr>
+            <tr>
+                <td>メモ</td>
+                <td>
+                    <form action="?p=Support/User&mode=update&userId=%% $data.userId %%" method="post" id="form_memo"></form>
+                    <textarea name="memo" form="form_memo" cols="40" rows="6" class="form-control">%% $data.memo %%</textarea>
+                    <div class="vspace5"></div>
+                    <input type="submit" form="form_memo" value="登録" class="btn btn-outline-secondary">
+                </td>
+            </tr>
+             *%%
+        </tbody>
+    </table>
+</div>
+
+
+

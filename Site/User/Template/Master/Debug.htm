@@ -1,0 +1,25 @@
+%% if $WV_DEBUG %%
+	<div class="container" id="debug">
+	    <div class="row">
+	        <div class="col-sm-8 offset-sm-2">
+                <div>
+                    <span>%% $PF %%</span>
+                    <span class="text-danger">%% $USER_ID %%</span>
+                    <span>%% if !$USER_LOGIN %%(仮)%% /if %%</span>
+                    %% if $USER_LOGIN %%
+                        <span>%% $USER_INFO.nickname %% %% $USER_INFO.mailAddress %%</span>
+                    %% /if %%
+                    %% if $SYSTEM_STATUS === 'メンテナンス中' %%
+                        <span class="bg-danger">%% $SYSTEM_STATUS %%</span>
+                    %% /if %%
+                </div>
+                <div>
+                    <span><a href="/Debug/Debug" class="text-primary">テスト支援</a></span>
+                    <span><a href="/Debug/Links" class="text-primary">ページ一覧</a></span>
+                    <span><a href="?showReviewAlert=1" class="text-primary">レビュー誘導</a></span>
+                </div>
+                <div id="debugOutput"></div>
+	        </div>
+	    </div>
+	</div>
+%% /if %%

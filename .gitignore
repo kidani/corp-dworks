@@ -1,0 +1,34 @@
+/.idea/*
+/node_modules/*
+/Site/Config/Config.ini
+/package-lock.json
+/package.json
+
+# Admin
+/Site/Admin/Config/BatchErrorLogCheck.ini
+/Site/Admin/Tmp/*.log
+/Site/Admin/Tmp/*.csv
+/Site/Admin/Tmp/Sass_c/*
+!/Site/Admin/Tmp/Sass_c/.gitkeep
+/Site/Admin/Tmp/Smarty/Template_c/*
+!/Site/Admin/Tmp/Smarty/Template_c/.gitkeep
+/Site/Admin/Tmp/Smarty/Cache/*
+!/Site/Admin/Tmp/Smarty/Cache/.gitkeep
+/Site/Admin/Tmp/Smarty/Configs/*
+!/Site/Admin/Tmp/Smarty/Configs/.gitkeep
+
+# User
+/Site/User/Tmp/*.log
+/Site/User/Tmp/Sass_c/*
+!/Site/User/Tmp/Sass_c/.gitkeep
+/Site/User/Tmp/Smarty/Template_c/*
+!/Site/User/Tmp/Smarty/Template_c/.gitkeep
+/Site/User/Tmp/Smarty/Cache/*
+!/Site/User/Tmp/Smarty/Cache/.gitkeep
+/Site/User/Tmp/Smarty/Configs/*
+!/Site/User/Tmp/Smarty/Configs/.gitkeep
+
+/Site/User/Web/robots.txt
+/Site/User/Web/ads.txt
+/Site/User/Web/BingSiteAuth.xml
+/Site/User/Web/.htaccess

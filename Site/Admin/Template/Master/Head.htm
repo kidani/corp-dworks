@@ -1,0 +1,33 @@
+<head>
+    <meta charset="UTF-8">
+    %% if $SCREEN_SIZE === 'small' %%
+        <meta name="viewport" content="width=1280">
+    %% else %%
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    %% /if %%
+    <meta name="description" content="%% $SITE_NAME %%">
+    <meta name="keywords" content="%% $SITE_NAME %%">
+    <title>%% $SITE_NAME %% 管理</title>
+    <link rel="icon" href="imagesAdmin/favicon.ico">
+
+    %%* CSS *%%
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/start/jquery-ui.css">
+    <link rel="stylesheet" href="/cssAdmin/jquery.datetimepicker.css">
+    <link rel="stylesheet" href="/cssAdmin/bootstrap.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
+    <link rel="stylesheet" href="/cssAdmin/main.css">
+
+    %%* JS *%%
+    <script src="/jsAdmin/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="/jsAdmin/jquery.datetimepicker.js"></script>
+    <script src="/jsAdmin/bootstrap.bundle.min.js"></script>
+    %% $paramJs %% %%* PHP → JSへの連携パラメータ *%%
+    <script src="/js/common.js"></script>
+    <script src="/jsAdmin/main.js"></script>
+    %%* ページ別処理 *%%
+    %%* %% if $pageName === 'XXXXX/XXXXX' %%
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=%% $API.GoogleMapApiKey %%&v=3.exp"></script>
+    %% /if %% *%%
+
+</head>

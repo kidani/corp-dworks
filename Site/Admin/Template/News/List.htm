@@ -1,0 +1,56 @@
+<h1 class="title-page">ニュース一覧</h1>
+
+<div class="table-responsive">
+    <table class="table table-striped tbl-vline-rl">
+        <thead>
+        <tr>
+            <th><span>ID</span></th>
+            <th><span>タイトル</span></th>
+            <th><span>配信状態</span></th>
+            <th>
+                %% assign var=target value='insTime' %%
+                <span %% if $sort.sortCol === $target %% class="status-active" %% /if %%>
+                        <a href="?%% $sort.query %%&sortCol=%% $target %%">登録日時</a>
+                    </span>
+                %% if $sort.sortCol === $target %%<span class="order-mark">%% $sort.toggleMark %%</span>%% /if %%
+            </th>
+            <th>
+                %% assign var=target value='openTime' %%
+                <span %% if $sort.sortCol === $target %% class="status-active" %% /if %%>
+                        <a href="?%% $sort.query %%&sortCol=%% $target %%">公開開始日時</a>
+                    </span>
+                %% if $sort.sortCol === $target %%<span class="order-mark">%% $sort.toggleMark %%</span>%% /if %%
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        %% foreach from=$data item=val %%
+            <tr>
+                <td>%% $val.id %%</td>
+                <td>
+                    <a href="?p=News/Detail&id=%% $val.id %%">
+                        %% $val.title %%
+                    </a>
+                </td>
+                <td>
+                    %% $val.status %%
+                    %% if $val.status === '公開中' && $val.openTime|strtotime > $smarty.now-24*60*60*10 %%
+                        %%* 公開後10日以内ならNEW *%%
+                        <span class="mark-status-active">NEW</span>
+                    %% /if %%
+                </td>
+                <td>%% $val.insTime|date_format_ex:false %%</td>
+                <td>%% $val.openTime|date_format_ex:false %%</td>
+            </tr>
+        %% /foreach %%
+        </tbody>
+    </table>
+</div>
+
+<p><a href="?p=News/Detail&mode=add" class="btn btn-outline-secondary">ニュース追加</a></p>
+
+%%* ページャ *%%
+<div class="box-pager">
+    %% assign var=showSummary value='1' %%
+    %% include file="Master/Pager.htm" %%
+</div>

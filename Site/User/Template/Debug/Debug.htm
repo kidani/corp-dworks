@@ -1,0 +1,65 @@
+%%* meta タグ書き換え *%%
+<input type="hidden" name="metaRobots" value="noindex">
+
+%% if $WV_DEBUG %%
+
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+
+                %%* ログアウト *%%
+                <section>
+                    <h3>ログアウト</h3>
+                    <p><a href="/Logout" class="btn btn-outline-secondary">ログアウト</a></p>
+                </section>
+                <hr>
+
+                %%* セッション＆クッキー *%%
+                <section>
+                    <h3>セッション＆クッキー</h3>
+                    <p><a href="/Debug/Debug&delete=all&key=all" class="btn btn-outline-secondary">同時に全て削除</a></p>
+                </section>
+                <hr>
+
+                %%* セッション *%%
+                <section>
+                    <h3>セッション</h3>
+
+                    %%* 全て削除 *%%
+                    <p><a href="/Debug/Debug&delete=session&key=all" class="btn btn-outline-secondary">全て削除</a></p>
+                    <div class="vspace10"></div>
+
+                    %%* 個別に削除 *%%
+                    %% foreach from=$SESSION key=key item=val %%
+                        <p>%% $key %%：%% $val %%</p>
+                        <p><a href="/Debug/Debug&delete=session&key=%% $key %%" class="btn btn-outline-secondary">削除</a></p>
+                    %% /foreach %%
+
+                </section>
+                <hr>
+
+                %%* クッキー *%%
+                <section>
+                    <h3>クッキー</h3>
+
+                    %%* 全て削除 *%%
+                    <p><a href="/Debug/Debug&delete=cookie&key=all" class="btn btn-outline-secondary">全て削除</a></p>
+                    <div class="vspace10"></div>
+
+                    %%* 個別に削除 *%%
+                    %% foreach from=$COOKIE key=key item=val %%
+                        <p>%% $key %%：%% $val %%</p>
+                        <p><a href="/Debug/Debug&delete=cookie&key=%% $key %%" class="btn btn-outline-secondary">削除</a></p>
+                    %% /foreach %%
+
+                </section>
+
+			</div>
+		</div> 
+	</div>
+
+%%/if%%
+
+
+
+

@@ -1,0 +1,58 @@
+%%* meta タグ書き換え *%%
+<input type="hidden" name="metaTitle" value="%% $SITE_NAME %% | ニュース一覧">
+<input type="hidden" name="metaDescription" value="ニュース一覧 %% $metaDescriptionMin %%">
+<input type="hidden" name="metaKeywords" value="ニュース一覧,%% $metaKeywordsMin %%">
+
+%%* ヘッダーバナー *%%
+<div>%%* この div は重要なので削除しないこと！ *%%
+    <div class="page-head-img" style="height: 40vh;">
+        <div class="boxImage h-short" style="background-image: url('/images/news/news_banner_header1.jpg'); background-position: center center;">
+            <div class="boxText">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="main">
+
+    %%* パンくずリスト *%%
+    %% assign var=pageList value=['トップ' => "$SITE_URL", 'ニュース一覧' => ''] %%
+    %% include file="Master/BreadCrumb.htm" pageList=$pageList %%
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="title-page">ニュース</h1>
+
+                %% if $data %%
+                    <ul class="list-group list-group-flush">
+                        %% foreach from=$data key=key item=val %%
+                            <li class="list-group-item">
+                                <a href="/News/Detail?id=%% $val.id %%">
+                                    %% $val.openTime|date_format_ex:false %%
+                                    %% if $val.openTime|strtotime > $smarty.now-24*60*60*10 %%
+                                        %%* 公開後10日以内ならNEW *%%
+                                        <span class="mark-status-active">NEW</span>
+                                    %% /if %%
+                                    %%* %% $val.title %% - %% $val.detail|cutLongText:30 %% *%%
+                                    %% $val.title %%
+                                </a>
+                            </li>
+                        %% /foreach %%
+                    </ul>
+                %% /if %%
+                <div class="vspace20"></div>
+
+                %%* ページャ *%%
+                %% if $data %%
+                    %% include file="Master/Pager.htm" %%
+                %% /if %%
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

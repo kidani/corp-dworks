@@ -1,0 +1,69 @@
+<header class="container-fluid">
+        %%* メニュー（1段目） *%%
+        <div class="row">
+            <div class="col-12 d-flex justify-content-between">
+                %%* 管理画面タイトル *%%
+                <span class="title">
+                    <i class="fa fa-home fa-lg"></i>
+                    <a href="%% $SITE_URL_ADMIN %%">%% $SITE_NAME %%&nbsp;&nbsp;</a>
+                </span>
+                %% if $USER_LOGIN %%
+                    %%* 右寄せメニュー *%%
+                    <ul class="list-inline mb-1">
+                        <li class="list-inline-item">
+                            <i class="fa fa-globe fa-lg"></i>
+                            <a href="%% $SITE_URL %%">ユーザー画面</a>
+                        </li>
+                            <li class="list-inline-item">
+                                <i class="fa fa-user fa-lg"></i>
+                                <a href="?p=System/Logout">ログアウト</a>
+                            </li>
+                    </ul>
+                %% /if %%
+            </div>
+        </div>
+
+    %% if $USER_LOGIN %%
+        %%* メニュー（2段目） *%%
+        <div class="row">
+            <div class="col-12">
+                <ul class="menu-main list-unstyled">
+                    <li class="menu-single">
+                        <a href="javascript:void(0);" class="init-bottom">運営サポート</a>
+                        <ul class="menu-second-level">
+                            <li><a href="?p=News/List">ニュース</a></li>
+                        </ul>
+                    </li>
+                    %% if $ADMIN_USER.authType === '管理' %%
+                        <li class="menu-single">
+                            <a href="javascript:void(0);" class="init-bottom">システム管理</a>
+                            <ul class="menu-second-level">
+                                <li><a href="?p=System/AdminUserList">ログイン管理</a></li>
+                                <li><a href="?p=System/BaseInfo">サイト基本情報</a></li>
+                            </ul>
+                        </li>
+                    %% /if %%
+                </ul>
+            </div>
+        </div>
+    %% /if %%
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

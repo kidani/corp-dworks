@@ -1,0 +1,58 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+
+    %%* METAタグ *%%
+    %%* ここではデフォルト設定して各ページ先頭でJS書き換えする。 *%%
+    %% assign var=metaTitle value="`$SITE_NAME` | `$SITE_CATCH`" %%
+    %% assign var=metaDescription value="ウッドバレーはWEBシステム開発、ネイティブアプリ開発をメインに SaaS・クラウドシステムや受託開発で提供しています。フリマアプリ、AWS IoT アプリ、ソーシャルアプリ、駐車場シェアサービス、不動産物件ポータル、WORDPRESS開発など多様なカテゴリのシステム領域で、企画・設計・構築・運用・SEO対策に至るまでのトータルソリューションを提供します。" %%
+    %% assign var=metaDescriptionMin scope=parent value="ウッドバレーはWEBシステム開発、ネイティブアプリ開発をメインに SaaS・クラウドシステムや受託開発で提供しています。" %%
+    %% assign var=metaKeywords value="システム開発,クラウド,SaaS,AWS IoT,android,ios,xcode,java,フリマアプリ,シェアリングエコノミーサービス,釣り,求人サイト,口コミサイト,キャリア公式サイト,SEO対策" %%
+    %% assign var=metaKeywordsMin scope=parent value="システム開発,サイト構築,クラウド,SaaS,ワードプレス,WORDPRESS,アプリ,アプリ,android,ios,フリマ,釣り,求人,口コミ,SEO対策" %%
+    %% assign var=metaImage value="`$SITE_URL`images/apple-touch-icon.png" %%
+
+    <title>%% $metaTitle %%</title>
+    <meta name="description" content="%% $metaDescription %%">
+    <meta name="keywords" content="%% $metaKeywords %%">
+
+    %%* OGPタグ *%%
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="%% $SITE_NAME %%">
+    <meta property="og:title" content="%% $metaTitle %%">
+    <meta property="og:description" content="%% $metaDescription %%">
+    <meta property="og:url" content="%% $SITE_URL %%%% $pageName %%">
+    <meta property="og:image" content="%% $metaImage %%">
+
+    %%* SEO対策 *%%
+    <link rel="index" href="/" title="%% $SITE_NAME %%">
+    %%* 重複コンテンツ除外・URL正規化は各ページで書き換え *%%
+    <link rel="canonical" href="%% $SITE_URL %%%% $pageName %%">
+
+    %%* favicon *%%
+    <link rel="shortcut icon" href="/images/favicon.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+
+    %%* CSS *%%
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
+    <link rel="stylesheet" href="https://anijs.github.io/lib/anicollection/anicollection.css">
+    %% if $WV_DEBUG %%
+        <link rel="stylesheet" href="/css/custom.css?upd=%% $smarty.now|date_format:"%Y%m%d%H" %%">
+        <link rel="stylesheet" href="/css/main.css?upd=%% $smarty.now|date_format:"%Y%m%d%H%M%S" %%">
+    %% else %%
+        %%* 本番は圧縮版を読む *%%
+        <link rel="stylesheet" href="/css/custom.min.css">
+        <link rel="stylesheet" href="/css/main.min.css">
+    %% /if %%
+
+    %%* Google Tag Manager *%%
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5HQSN45');
+    </script>
+
+</head>
+

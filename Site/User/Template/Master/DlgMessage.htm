@@ -1,0 +1,20 @@
+%%* メッセージダイアログ（モーダル） *%%
+%% if $MASTER_MESSAGE.message.dialog %%
+    <div class="master-message-dialog">
+        <div class="dialog__wrap">
+            <div class="dialog__head"></div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-10 offset-1">
+                        <div class="master-message">
+                            %% foreach from=$MASTER_MESSAGE.message.dialog item=value %%
+                                <p>%% $value %%</p>
+                            %% /foreach %%
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-outline-secondary btn-sm btn-block dialog__btn_close">閉じる</button>
+        </div>
+    </div>
+%% /if %%

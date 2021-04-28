@@ -1,0 +1,212 @@
+<h1 class="title-page">ユーザー情報</h1>
+
+<form role="form" id="form-search" action="?p=Support/UserList" method="post">
+
+    %%* ユーザーID *%%
+    <div class="form-group row mb-1">
+        <label for="form-search__userId" class="col-sm-4 col-form-label wv-lbl-hform">ユーザーID</label>
+        <div class="col-sm-6">
+            <input type="text" name="userId" class="form-control" id="form-search__userId"
+                   placeholder="" value="%% $curParam.userId %%">
+        </div>
+    </div>
+
+    %%* ニックネーム *%%
+    <div class="form-group row mb-1">
+        <label for="form-search__nickname" class="col-sm-4 col-form-label wv-lbl-hform">ニックネーム</label>
+        <div class="col-sm-6">
+            <input type="text" name="nickname" class="form-control" id="form-search__nickname"
+                   placeholder="" value="%% $curParam.nickname %%">
+        </div>
+    </div>
+
+    %%* メールアドレス *%%
+    <div class="form-group row mb-1">
+        <label for="form-search__mailAddress" class="col-sm-4 col-form-label wv-lbl-hform">メールアドレス</label>
+        <div class="col-sm-6">
+            <input type="text" name="mailAddress" class="form-control" id="form-search__mailAddress"
+                   placeholder="" value="%% $curParam.mailAddress %%">
+        </div>
+    </div>
+
+    %%* ステータス *%%
+    <div class="form-group row mb-1">
+        <label for="form-search__status" class="col-sm-4 col-form-label wv-lbl-hform">ステータス</label>
+        <div class="col-sm-6 d-flex align-items-center">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="status[]" value="仮登録" id="form-search__status1"
+                        %% foreach from=$curParam.status item=val %%
+                            %% if $val === '仮登録' %% checked %% /if %%
+                        %% /foreach %%>
+                    <label class="form-check-label mr-2">仮登録</label>
+                <input class="form-check-input" type="checkbox" name="status[]" value="登録済" id="form-search__status2"
+                        %% foreach from=$curParam.status item=val %%
+                            %% if $val === '登録済' %% checked %% /if %%
+                        %% /foreach %%>
+                    <label class="form-check-label mr-2">登録済</label>
+                <input class="form-check-input" type="checkbox" name="status[]" value="退会済" id="form-search__status3"
+                        %% foreach from=$curParam.status item=val %%
+                            %% if $val === '退会済' %% checked %% /if %%
+                        %% /foreach %%>
+                    <label class="form-check-label mr-2">退会済</label>
+                <input class="form-check-input" type="checkbox" name="status[]" value="強制退会済" id="form-search__status4"
+                        %% foreach from=$curParam.status item=val %%
+                            %% if $val === '強制退会済' %% checked %% /if %%
+                        %% /foreach %%>
+                    <label class="form-check-label mr-2">強制退会済</label>
+            </div>
+        </div>
+    </div>
+
+    %%* 操作制限 *%%
+    %%*
+    <div class="form-group row mb-1">
+        <label for="form-search__restriction" class="col-sm-4 col-form-label wv-lbl-hform">操作制限</label>
+        <div class="col-sm-6">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="restriction[]" value="監視対象" id="form-search__restriction1"
+                        %% foreach from=$curParam.restriction item=val %%
+                    %% if $val === '監視対象' %% checked %% /if %%
+                        %% /foreach %%>
+                <label class="form-check-label mr-2">監視対象</label>
+                <input class="form-check-input" type="checkbox" name="restriction[]" value="取引制限" id="form-search__restriction1"
+                        %% foreach from=$curParam.restriction item=val %%
+                    %% if $val === '取引制限' %% checked %% /if %%
+                        %% /foreach %%>
+                <label class="form-check-label mr-2">取引制限</label>
+            </div>
+        </div>
+    </div>
+     *%%
+
+    %%* 運営メモ *%%
+    %%*
+    <div class="form-group row mb-1">
+        <label for="form-search__memo" class="col-sm-4 col-form-label wv-lbl-hform">運営メモ</label>
+        <div class="col-sm-6">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="memo" value="メモあり" id="form-search__memo1"
+                        %% if $curParam.memo === 'メモあり' %% checked %% /if %%>
+                <label class="form-check-label mr-2">メモあり</label>
+            </div>
+        </div>
+    </div>
+     *%%
+
+    %%* MAS専用ユーザー *%%
+    %%*
+    <div class="form-group row mb-1">
+        <label for="form-search__fakeUser" class="col-sm-4 col-form-label wv-lbl-hform">MAS専用ユーザー</label>
+        <div class="col-sm-6">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="fakeUser" value="1" id="form-search__fakeUser1"
+                        %% if $curParam.fakeUser === '1' %% checked %% /if %%>
+                <label class="form-check-label mr-2">対象</label>
+            </div>
+        </div>
+    </div>
+     *%%
+
+    %%* 登録日時 *%%
+    <div class="form-group row mb-1">
+        <label for="form-search__insTime" class="col-sm-4 col-form-label wv-lbl-hform">登録日時</label>
+        <div class="col-sm-6">
+            <div class="input-datetime d-flex justify-content-start align-items-center">
+                <input type="text" class="form-control searchTime" name="insTimeFrom" autocomplete="off"
+                       value="%% if $curParam.insTimeFrom %%%% $curParam.insTimeFrom|date_format:"%Y/%m/%d %H:%M" %%%% /if %%">
+                &nbsp;～&nbsp;
+                <input type="text" class="form-control searchTime" name="insTimeTo" autocomplete="off"
+                       value="%% if $curParam.insTimeTo %%%% $curParam.insTimeTo|date_format:"%Y/%m/%d %H:%M" %%%% /if %%">
+            </div>
+        </div>
+    </div>
+
+    %%* 最終ログイン日時 *%%
+    <div class="form-group row mb-1">
+        <label for="form-search__lastLoginTime" class="col-sm-4 col-form-label wv-lbl-hform">最終ログイン日時</label>
+        <div class="col-sm-6">
+            <div class="input-datetime d-flex justify-content-start align-items-center">
+                <input type="text" class="form-control searchTime" name="lastLoginTimeFrom" autocomplete="off"
+                       value="%% if $curParam.lastLoginTimeFrom %%%% $curParam.lastLoginTimeFrom|date_format:"%Y/%m/%d %H:%M" %%%% /if %%">
+                &nbsp;～&nbsp;
+                <input type="text" class="form-control searchTime" name="lastLoginTimeTo" autocomplete="off"
+                       value="%% if $curParam.lastLoginTimeTo %%%% $curParam.lastLoginTimeTo|date_format:"%Y/%m/%d %H:%M" %%%% /if %%">
+            </div>
+        </div>
+    </div>
+
+    %%* 検索ボタン *%%
+    <div class="form-group row mt-3 mb-5">
+        <div class="col-sm-12 d-flex align-items-center">
+            <button type="submit" class="btn btn-primary mr-3">検索実行</button>
+            <button type="button" class="btn btn-outline-secondary"><a href="?p=Support/UserList">リセット</a></button>
+            <div class="wv-font-lg">（検索結果：%% $totalCnt %%）</div>
+        </div>
+    </div>
+
+</form>
+
+%%* ページャ *%%
+<div class="box-pager">
+    %% assign var=showSummary value='1' %%
+    %% include file="Master/Pager.htm" %%
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped tbl-vline-rl">
+        <thead>
+            <tr>
+                <th><span>ユーザーID</span></th>
+                %%* <th><span>ユーザー名</span></th> *%%
+                <th><span>ニックネーム</span></th>
+                <th><span>メールアドレス</span></th>
+                <th><span>環境</span></th>
+                <th><span>ステータス</span></th>
+                <th>
+                    %% assign var=target value='insTime' %%
+                    <span %% if $sort.sortCol === $target %% class="status-active" %% /if %%>
+                        <a href="?%% $sort.query %%&sortCol=%% $target %%">登録日時</a>
+                    </span>
+                    %% if $sort.sortCol === $target %%<span class="order-mark">%% $sort.toggleMark %%</span>%% /if %%
+                </th>
+                <th>
+                    %% assign var=target value='lastLoginTime' %%
+                    <span %% if $sort.sortCol === $target %% class="status-active" %% /if %%>
+                        <a href="?%% $sort.query %%&sortCol=%% $target %%">最終ログイン</a>
+                    </span>
+                    %% if $sort.sortCol === $target %%<span class="order-mark">%% $sort.toggleMark %%</span>%% /if %%
+                </th>
+                %%*<th><span>クローラ</span></th> *%%
+                %%*<th><span>アクセス数<br>（デイリー）</span></th> *%%
+            </tr>
+        </thead>
+        <tbody>
+            %% foreach from=$data item=val %%
+                <tr>
+                    <td style="font-size: 10px;">
+                        %% if $val.fakeUser %%
+                            <a href="?p=Support/User&userId=%% $val.userId %%"><span class="fakeUser">%% $val.userId %%</span></a>
+                        %% else %%
+                            <a href="?p=Support/User&userId=%% $val.userId %%">%% $val.userId %%</a>
+                        %% /if %%
+                    </td>
+                    <td>%% $val.nickname %%                                     </td>
+                    <td>%% $val.mailAddress %%                                  </td>
+                    <td>%% $val.pf %%                                           </td>
+                    <td>%% $val.status %%                                       </td>
+                    <td>%% $val.insTime|date_format:'%Y/%m/%d %H:%M' %%         </td>
+                    <td>%% $val.lastLoginTime|date_format:'%Y/%m/%d %H:%M' %%   </td>
+                    %%* <td>%% $val.crawler %%                                  </td> *%%
+                    %%* <td>%% $val.accDailyCount %%                            </td> *%%
+                </tr>
+            %% /foreach %%
+        </tbody>
+    </table>
+</div>
+
+%%* ページャ *%%
+<div class="box-pager">
+    %% assign var=showSummary value='1' %%
+    %% include file="Master/Pager.htm" %%
+</div>
+

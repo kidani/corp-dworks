@@ -1,0 +1,73 @@
+<h1 class="title-page">ニュース詳細</h1>
+<form id="form-news" role="form" action="?p=News/Detail" method="post">
+    <input type="hidden" name="mode" value="update">
+    <div class="table-responsive">
+        <table class="table wvTblKeyVal tbl-vline-rl">
+            <tbody>
+            <tr>
+                <td class="wv-w-20">ID</td>
+                <td>
+                    <input type="hidden" name="id" value="%% $dataForm.id %%">
+                    %% $dataForm.id %%
+                </td>
+            </tr>
+            <tr>
+                <td class="wv-w-20">ユーザー画面URL</td>
+                <td>
+                    %% if $dataForm.id %%
+                        <a href="%% $SITE_URL %%News/Detail?id=%% $dataForm.id %%">
+                            %% $SITE_URL %%News/Detail?id=%% $dataForm.id %%
+                        </a>
+                    %% /if %%
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="form-news__title" class="mark-require">タイトル</label>
+                </td>
+                <td>
+                    <input type="text" name="title" class="form-control" id="form-news__title"
+                           placeholder="50文字以内で入力して下さい。" value="%% $dataForm.title %%">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="form-news__detail" class="mark-require">詳細</label></td>
+                <td>
+                    <textarea name="detail" class="form-control" id="form-news__detail"
+                              placeholder="10文字以上で入力して下さい。" rows="20" cols="20">%% $dataForm.detail %%</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>配信状態</td>
+                <td>
+                    %% $dataForm.status %%
+                    %% if $dataForm.status === '公開中' && $dataForm.openTime|strtotime > $smarty.now-24*60*60*10 %%
+                        %%* 公開後10日以内ならNEW *%%
+                        <span class="mark-status-active">NEW</span>
+                    %% /if %%
+                    <span class="caution-sm">（※配信開始後10日以内ならNEW）</span>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="form-news__openTime" class="mark-require">配信開始日時</label></td>
+                <td>
+                    <input type="text" name="openTime" class="form-control wv-wpx-200 d-inline-block" id="form-news__openTime"
+                           value="%% $dataForm.openTime|date_format_ex %%" autocomplete="off">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="form-news__closeTime"">配信終了日時</label></td>
+                <td>
+                    <input type="text" name="closeTime" class="form-control wv-wpx-200" id="form-news__closeTime"
+                           value="%% $dataForm.closeTime|date_format_ex %%" autocomplete="off">
+                </td>
+            </tr>
+            <tr><td>登録日時</td><td>%% $dataForm.insTime|date_format_ex %%</td></tr>
+            <tr><td>更新日時</td><td>%% $dataForm.updTime|date_format_ex %%</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="vspace20"></div>
+    <input type="submit" value="登録" class="btn btn-outline-secondary">
+    <a href="?p=News/List" class="btn btn-outline-secondary ml-3">ニュース一覧へ</a>
+</form>

@@ -1,0 +1,24 @@
+%% if isset($pager) && $pager %%
+    <div class="box-pager">
+        <div class="wv-pager">
+            <ul>
+                %%* インデックスボタン *%%
+                %% if $pager.firstPageNo %%<li><a href="?curPageNo=%% $pager.firstPageNo %%&%% $pager.query %%">&laquo;</a></li>%% /if %%
+                %% if $pager.prevPageNo %%<li><a href="?curPageNo=%% $pager.prevPageNo %%&%% $pager.query %%">&lt;</a></li>%% /if %%
+                %% if $pager.indexList|@count > 1 %%
+                    %% foreach from=$pager.indexList item=val %%
+                        <li %% if $val == $pager.curPageNo %% class='status-active' %% /if %%><a href="?curPageNo=%% $val %%&%% $pager.query %%">%% $val %%</a></li>
+                    %% /foreach %%
+                %% /if %%
+                %% if $pager.nextPageNo %%<li><a href="?curPageNo=%% $pager.nextPageNo %%&%% $pager.query %%">&gt;</a></li>%% /if %%
+                %% if $pager.lastPageNo %%<li class="links"><a href="?curPageNo=%% $pager.lastPageNo %%&%% $pager.query %%">&raquo;(%% $pager.totalPageCnt %%)</a></li>%% /if %%
+                %%* 件数詳細 *%%
+                %%* %% if !isset($hideSummary) && $pager.indexList|@count > 1 %% *%%%%* 2ページ以上の場合だけ表示 *%%
+                %% if !isset($hideSummary)  %%%%* 1ページでも表示 *%%
+                    <span class="summary">（%% $pager.curPageItem.startCnt %%～%% $pager.curPageItem.endCnt %%／%% $pager.totalCnt %%）</span>
+                %% /if %%
+            </ul>
+        </div>
+    </div>
+%% /if %%
+

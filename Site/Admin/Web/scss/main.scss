@@ -1,0 +1,800 @@
+@charset "utf-8";
+
+/*************************************************
+ 変数定義
+**************************************************/
+// フォント
+$fontSize2S		: 10px;
+$fontSizeSmall	: 12px;
+$fontSizeDefault: 14px;
+$fontSizeLarge	: 16px;
+$fontSize2L		: 20px;
+$fontSize3L		: 24px;
+$fontSize4L		: 28px;
+$fontSize5L     : 32px;
+
+// カラー
+$colorWhite: #FFFFFF;               // 白
+$colorBlack: #000000;               // 黒
+$colorGreyDark: #222222;			// 濃灰
+$colorGrey: #808080;				// 灰
+$colorGreyLight: #DDDDDD;			// 薄灰 無効ボタンなど
+$colorGreyLightEx: #EEEEEE;			// 極薄灰
+$colorBlueDarkEx: #004D7D;			// 極濃青
+$colorBlueDark: #007FAF;			// 濃青
+$colorBlue: #32B1E1;	    	    // 薄青
+$colorBlueLight: #c7eefa;
+$colorRightOrange: #FFB369;			// 薄橙
+$colorOrange: #FF7F00;				// 橙
+
+// 用途別
+$colorBeigeLabel: #F5EDD1;			// 薄肌 ラベル（DL, TABLE）
+$colorGreyBorder: #dfdfdf;          // 薄灰 ボーダー（DL）
+
+// ステータス別
+$colorActive: #EC660B;      		// 濃橙
+$colorNew: #C00C00;					// 臙
+$fontColorWarning: #000040;			// 警告表示（フォント色 濃紫）
+$bgColorInfo: #5bc0de;				// 情報表示（背景色 青系）
+$bgColorWarning: #f0ad4e;			// 警告表示（背景色 橙系）
+$bgColorError: #d9534f;				// エラー表示（背景色 赤系）
+$bgColorSuccess: #5cb85c;			// 成功表示（背景色 緑系）
+$bgColorDebug: #FFFFB4;				// デバッグ情報表示（背景色 黄系）
+
+/*-------------------------------------------------
+ mixin
+-------------------------------------------------*/
+// NEWSの配信中等アクティブなアイテム用
+@mixin statusActive { 
+    background-color: $colorActive;
+    color: $colorWhite;
+    padding: 2px 5px;
+    margin: 5px 5px;
+    border-radius: 3px;
+}
+
+/*-------------------------------------------------
+ Bootstrap 上書き
+-------------------------------------------------*/
+label {
+    // display: inline-block;
+    margin-bottom: 0;      // 原版：0.5rem
+}
+
+// ラベル内文字が上寄せ過ぎるので下に調整
+.col-form-label {
+    // padding-top: calc(0.375rem + 1px);
+    padding-top: calc(0.375rem + 4px);
+}
+
+/*-------------------------------------------------
+ タグ共通設定
+-------------------------------------------------*/
+html, body {
+	height: 100%;    	    // 余白がある場合の隙間埋め
+	color: $colorGreyDark;
+}
+
+body {
+	font: 14px "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", Osaka, sans-serif;
+}
+
+a, a:hover, a:focus {
+	color: #282869;
+    text-decoration: none;
+}
+
+/*************************************************
+ UI部品
+*************************************************/
+/*------------------------------------------------
+ フォント
+------------------------------------------------*/
+// フォントサイズ
+.wv-font-sm2 { font-size: $fontSize2S; }
+.wv-font-sm { font-size: $fontSizeSmall; }
+.wv-font-lg { font-size: $fontSizeLarge; }
+.wv-font-lg2 { font-size: $fontSize2L; }
+.wv-font-lg3 { font-size: $fontSize3L; }
+.wv-font-lg4 { font-size: $fontSize4L; }
+.wv-font-lg5 { font-size: $fontSize5L; }
+
+/*------------------------------------------------
+ ボタン
+------------------------------------------------*/
+// テストボタン
+@mixin btn-test {
+    background-color: $colorGrey;
+    color: $colorWhite;
+    text-align: center;
+    border-radius: 20px;
+    padding: 5px 20px;
+    margin: 10px auto;
+    &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+        filter: alpha(opacity=80) ;
+    }
+}
+
+// テストボタン（中）
+.btn-test {
+    @include btn-test;
+}
+
+// テストボタン（小）
+.btn-test-sm {
+	@include btn-test; 
+	font-size: 12px;
+}
+
+// 横50%中央寄せ
+.width-half-center {
+	width: 50% !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+/*------------------------------------------------
+ フォーム
+------------------------------------------------*/
+// 検索フォーム
+.wv-lbl-hform {
+    background: #F0F0EF;
+}
+
+// 日時テキストボックス
+.input-datetime input {
+    width: 200px;
+}
+
+/*------------------------------------------------
+ ページャ
+------------------------------------------------*/
+.box-pager {
+    // ページャ
+    .wv-pager {
+        margin: 5px;
+        text-align: center;
+        font-size: $fontSizeSmall;
+        ul {
+            margin: 0;
+            padding: 0; // Bootstrap 上書き padding-left: 40px
+            li {
+                display: inline-block;
+                a {
+                    background: $colorBlueDark;
+                    color: $colorWhite;
+                    border-radius: 5px;
+                    padding:5px 10px;
+                    &:hover, &:active, &:focus {
+                        opacity: 0.7;
+                        filter: alpha(opacity=70);
+                    }
+                }
+                // SP版
+                @media screen and (max-width: 768px) {
+                    margin-left: 2px;
+                    margin-right: 2px;
+                    a {
+                        font-size: $fontSize2S;
+                        padding:5px 7px;
+                    }
+                }
+            }
+        }
+        // アクティブページ
+        .status-active a {
+            opacity: 0.7;
+            filter: alpha(opacity=70);
+        }
+
+        // 件数詳細
+        .summary {
+            font-size: $fontSizeLarge;
+            // SP版
+            @media screen and (max-width: 768px) {
+                display: none;
+            }
+        }
+    }
+}
+
+/*------------------------------------------------
+ テーブル
+------------------------------------------------*/
+// ラベル背景色
+.wv-lbl {
+    background: #F0F0EF;
+}
+// 詳細画面で多用されるキー・値だけのテーブル
+.wvTblKeyVal {
+    tr {
+        td {
+            // 左端列の背景色を変更
+            &:first-child {
+                background: #F0F0EF;
+            }
+        }
+    }
+}
+
+// Bootstrap上書き
+.table {
+	margin-bottom: 5px;
+    border-top: 1px solid $colorGreyLight;
+    border-bottom: 1px solid $colorGreyLight;
+	>tbody>tr>td,
+	>thead>tr>th {
+	    vertical-align: middle;
+	}
+}
+.table {
+	// ページャ側とバッティングするので要変更
+	//.status-active {
+	//	@include statusActive;
+	//}
+	.order-mark {
+		color: $colorBlueDark;
+		font-size: 18px;
+	} 
+}
+// 左右縦線あり、間隔狭め
+.tbl-vline-rl {
+	th, td {
+	    border-left: 1px solid $colorGreyLight;
+	    border-right: 1px solid $colorGreyLight;
+	}
+	>tbody>tr>td {
+	    padding: 5px;
+	}		
+}
+// 両端以外の左右縦線あり
+.tbl-vline-center {
+	th, td {
+	    border-left: 1px solid $colorGreyLight;
+	    border-right: 1px solid $colorGreyLight;
+		&:first-child {
+	    	border-left: none;
+		}
+		&:last-child {
+	    	border-right: none;
+		}  
+	}
+}
+
+/*------------------------------------------------
+ モーダルウィンドウ
+------------------------------------------------*/
+// ローディング
+#loading {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    // 画像が200pxの場合の中央寄せ
+    margin: -100px 0 0 -100px;
+    z-index: 1001;
+    display: none;
+}
+.wv-modal {
+    display: none;
+}
+.wv-modal-body {
+    position: fixed;
+    z-index: 1000;
+    background: $colorBlack;
+}
+.wv-modal-back {
+    position: fixed;
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    background: $colorBlack;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    -moz-opacity: 0.70;
+    display: none;
+}
+
+// 画像アップロード
+.uploadImgList {
+    img {
+        cursor: pointer;
+    }
+}
+
+// 画像アップロード用ダイアログ
+.boxUploadImgModal {
+    width: 100%;
+    // max-height: 200px;
+    .uploadImgModal {
+        display: none;
+        position: fixed;
+        top: 20px;
+        z-index: 2000;
+        width: 50%;
+        // SP版
+        @media screen and (max-width: 768px) {
+            width: 90%;
+        }
+        background: white;
+        padding: 10px;
+        text-align: center;
+        img {
+            max-width: 70%;
+            height: auto;
+        }
+        // ファイル選択ボタン
+        input[name="uploadData"] {
+            display: none;
+        }
+        // 登録ボタン（アップロード）
+        #execUpload {
+            display: none;
+        }
+        .editCaution {
+            display: none;
+        }
+    }
+}
+
+/*------------------------------------------------
+ 見出し
+------------------------------------------------*/
+// 大見出し
+.title-page {
+    font-size: $fontSize3L;
+    margin: 15px 0;
+    border-bottom: 1px solid $colorGreyLightEx;
+}
+
+// 中見出し
+@mixin title-sub { 
+	position: relative;
+	border: 1px solid $colorGreyLight;
+    border-left: 10px solid $colorGreyDark;
+	padding: 8px 10px;
+	border-radius: 6px;
+	margin: 8px 3px;
+}
+
+.title-sub {
+	@include title-sub;
+	font-size: $fontSize2L;
+}
+
+// 小見出し
+.title-sub-sm {
+	@include title-sub;
+	border-left: 10px solid $colorGreyLight;
+	padding: 2px 30px;
+}
+
+/*-------------------------------------------------
+ バリデーション
+-------------------------------------------------*/
+// フォーム入力欄の背景色変更
+.wvInvalid {
+    background: $bgColorError;
+}
+
+// フォーム直下に追加するアラートメッセージ表示
+.formErrorMessage {
+    color: $bgColorError;
+    font-size: $fontSizeSmall;
+    display: none;
+    // display: block;
+}
+
+/*------------------------------------------------
+ その他
+------------------------------------------------*/
+// width % 指定
+.wv-w-3 	{ width: 3%; }
+.wv-w-5   	{ width: 5%; }
+.wv-w-10  	{ width: 10%; }
+.wv-w-15  	{ width: 15%; }
+.wv-w-20  	{ width: 20%; }
+.wv-w-25  	{ width: 25%; }
+.wv-w-30  	{ width: 30%; }
+.wv-w-40  	{ width: 40%; }
+.wv-w-50  	{ width: 50%; }
+.wv-w-60  	{ width: 60%; }
+.wv-w-70  	{ width: 70%; }
+.wv-w-80  	{ width: 80%; }
+.wv-w-90  	{ width: 90%; }
+.wv-w-100 	{ width: 100%; }
+// width px 指定
+.wv-wpx-5   { width: 5px; }
+.wv-wpx-10  { width: 10px; }
+.wv-wpx-15  { width: 15px; }
+.wv-wpx-20  { width: 20px; }
+.wv-wpx-30  { width: 30px; }
+.wv-wpx-40  { width: 40px; }
+.wv-wpx-50  { width: 50px; }
+.wv-wpx-60  { width: 60px; }
+.wv-wpx-70  { width: 70px; }
+.wv-wpx-80  { width: 80px; }
+.wv-wpx-90  { width: 90px; }
+.wv-wpx-100 { width: 100px; }
+.wv-wpx-200 { width: 200px; }
+.wv-wpx-300 { width: 300px; }
+
+// 非表示
+.wv-d-none { display: none; }
+
+// height px 指定
+// 垂直方向の余白（上下）に利用。
+// 例：<div class="vspace10"></div>
+.vspace5   { height: 5px;  }
+.vspace10  { height: 10px; }
+.vspace20  { height: 20px; }
+.vspace30  { height: 30px; }
+.vspace40  { height: 40px; }
+.vspace50  { height: 50px; }
+.vspace100 { height: 100px; }
+.vspace150 { height: 150px; }
+.vspace200 { height: 200px; }
+.vspace300 { height: 300px; }
+
+// NEWマーク
+.mark-new {
+    background-color: $colorNew;
+    color: $colorWhite;
+    font-size: $fontSizeSmall;
+    padding: 2px 5px;
+    margin: 5px 5px;
+    border-radius: 3px;
+}
+
+.mark-status-active {
+	@include statusActive;
+}
+
+// 必須マーク
+.mark-require {
+	&:before {
+		@include statusActive;
+    	background-color: red;
+		opacity: 0.7;
+		filter: alpha(opacity=70) ;
+		content:"必須";
+	}
+}
+
+// 注記
+@mixin annotation { 
+    color: $colorGrey;
+    a {
+    	font-weight: bold;
+    }
+}
+.annotation {
+    @include annotation;
+    font-size: $fontSizeSmall;
+}
+
+// 警告
+@mixin caution { 
+    color: $fontColorWarning;
+    a {
+    	font-weight: bold;
+    }
+}
+.caution {
+	@include caution;
+	font-size: $fontSizeDefault;
+}
+.caution-sm {
+	@include caution;
+	font-size: $fontSizeSmall;
+}
+.caution-lg {
+	@include caution;
+	font-size: $fontSizeLarge;
+}
+
+// 警告（単体表示）
+.box-caution {
+	@include caution;
+	font-size: $fontSize2L;
+	padding: 20px;	
+}
+.box-caution-sm {
+	@include caution;
+	font-size: $fontSizeDefault;
+	padding: 20px;	
+}
+
+// 吹き出し
+.arrow-box {
+	position: absolute;
+	display: none;
+	padding: 10px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	background: $colorGreyDark;
+	color: $colorWhite;
+	// 矢印
+	&:after {
+		position: absolute;
+		bottom: 100%;
+		left: 50%;
+		width: 0;
+		height: 0;
+		margin-left: -10px;
+		border: 10px solid rgba(51, 51, 51, 0);
+		border-bottom-color: $colorGreyDark;
+		pointer-events: none;
+		content: " ";
+	}
+}
+
+// フェイクユーザー（運営専用）
+.fakeUser {
+    color: $colorActive;
+    font-weight: bold;
+}
+
+/*-------------------------------------------------
+ ヘッダー
+-------------------------------------------------*/
+// メニュー（1段目）
+header {
+    background-color: $colorGreyDark;
+    color: $colorWhite;
+    padding-top: 10px;
+    a {
+        color: $colorWhite;
+    }
+}
+
+// メニュー（2段目）
+.menu-main {
+	position: relative;
+	width: 100%;
+	height: 40px;
+	margin: 0 auto;
+	padding: 0 20px;
+	>li {
+		float: left;
+		width: 150px;
+		height: 40px;
+		line-height: 35px;
+		background: $colorGreyDark;
+		padding-left: 5px;
+		padding-right: 5px;
+		margin-left: 5px;
+		a {
+			display: block;
+			color: $colorWhite;
+			&:hover {
+				color: #C0C0C0;
+			}
+		}
+		&:hover {
+			background: $colorGreyDark;
+			-webkit-transition: all .1s;
+			transition: all .1s;
+		}
+	}
+	>li.menu-single {
+		position: relative;
+
+		// 右の矢印
+		.init-bottom:after {
+			content: '';
+			display: inline-block;
+			width: 6px;
+			height: 6px;
+			margin: 0 0 0 15px;
+			border-right: 1px solid $colorWhite;
+			border-bottom: 1px solid $colorWhite;
+			-webkit-transform: rotate(45deg);
+			-ms-transform: rotate(45deg);
+			transform: rotate(45deg);
+		}
+		ul {
+			position: absolute;
+			top: 40px;
+			// width: 150px;
+			background: $colorGreyDark;
+			-webkit-transition: all .1s ease;
+			transition: all .1s ease;
+			visibility: hidden;
+			opacity: 0;
+			z-index: 1;
+			padding-left: 10px;
+			padding-right: 10px;
+			border-radius: 5px;
+			li {
+				border-top: 1px solid #C0C0C0;
+                width: 200px;
+				a:hover {
+					background: $colorGreyDark;
+				}
+			}
+		}
+		&:hover ul {
+			top: 40px;
+			left: 0;
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+	&:before {
+		content: " ";
+		display: table;
+	}
+	&:after {
+		content: " ";
+		display: table;
+		clear: both;
+	}
+}
+
+/*-------------------------------------------------
+ フッター
+-------------------------------------------------*/
+// フッター最下部固定の設定
+#wrap-fix-footer {
+    position: relative;
+    /* これがないと、下に続きがある場合、フッターがコンテンツに重ねて表示される。*/
+    height: auto !important; 
+    // 余白がある場合の隙間埋め
+    min-height: 100%;           
+}
+
+footer {
+    background-color: $colorGreyDark;
+    // 余白ありでも常に最下部に固定
+    height: 40px;
+    position: absolute;
+    bottom: 0;
+}
+
+.copyright {
+    font-size: $fontSizeSmall;
+    color: $colorWhite;
+    padding-top: 10px;
+    text-align: center;
+}
+
+/*-------------------------------------------------
+ メインエリア
+-------------------------------------------------*/
+#main {
+    // フッター最下部固定の設定
+    // footer の高さ ＋ フッター前の余白分：20px の下マージを確保する。
+    padding-bottom: 60px;
+}
+
+/*-------------------------------------------------
+ メッセージ
+-------------------------------------------------*/
+// マスターメッセージ
+.master-message {
+	font-size: $fontSize2L;
+	padding: 10px;
+	opacity: 0.7;
+}
+.master-message-error {
+	background: $bgColorError;
+	border-radius: 10px;
+	padding: 10px;	
+}	
+.master-message-warning {
+	background: $bgColorWarning;
+	border-radius: 10px;
+	padding: 10px;
+}
+.master-message-info {
+	background: $bgColorInfo;
+	border-radius: 10px;
+	padding: 10px;
+}
+.master-message-success {
+	background: $bgColorSuccess;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+// カスタムメッセージ
+.custom-message {
+    background: $bgColorInfo;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/*************************************************
+ 各画面
+*************************************************/
+/*-------------------------------------------------
+ 一覧画面（共通）
+-------------------------------------------------*/
+/*-------------------------------------------------
+ 詳細画面（共通）
+-------------------------------------------------*/
+//.wrap-detail {
+//    margin: 5px 0;
+//	// 最初の上端の罫線
+//	// ここはハマったので注意！
+//	.row:first-of-type {
+//	    border-top: 1px solid $colorGreyLight;
+//	}
+//}
+//
+//.img-detail a:hover {
+//    filter: alpha(opacity=50);
+//    -moz-opacity: 0.5;
+//    opacity: 0.5;
+//}
+
+/*-------------------------------------------------
+ ログイン
+-------------------------------------------------*/
+#form-login {
+    margin-top: 100px;
+    font-size: $fontSize2L;
+}
+
+/*-------------------------------------------------
+ トップ
+-------------------------------------------------*/
+// メニューアイコン
+.top-icon-menu ul {
+	text-align: center;
+	padding-left: 0;
+    a {
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+    }
+    li {
+        // リスト領域全体がリンクになる
+        background-color: #F2E5E5;
+        border-radius: 15px;
+        display: inline-block;
+        padding-top: 20px;
+        cursor: pointer;
+        width: auto;
+        &:hover {
+            filter: alpha(opacity=50);
+            -moz-opacity: 0.5;
+            opacity: 0.5;
+        }
+        @media (min-width: 768px) {
+            width: 30%;
+            font-size: 20px;
+        }
+    }
+}
+
+/*-------------------------------------------------
+ 入退会レポート
+-------------------------------------------------*/
+// 年選択ラジオ
+.inputYear {
+    display: none;
+}
+// 月選択ラジオ
+.openYm, .curYm, .inputMonth  {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,53 @@
+%%* meta タグ書き換え *%%
+<input type="hidden" name="metaTitle" value="%% $SITE_NAME %% | セキュリティポリシー">
+<input type="hidden" name="metaDescription" value="セキュリティポリシー | %% $metaDescriptionMin %%">
+<input type="hidden" name="metaKeywords" value="セキュリティポリシー,%% $metaKeywordsMin %%">
+
+%%* ヘッダーバナー *%%
+<div>%%* この div は重要なので削除しないこと！ *%%
+    <div class="page-head-img" style="height: 40vh;">
+        <div class="boxImage h-short" style="background-image: url('/images/top/computer2.jpg');  background-position: center bottom;">
+            <div class="boxText">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="main">
+
+    %%* パンくずリスト *%%
+    %% assign var=pageList value=['トップ' => "$SITE_URL", 'セキュリティポリシー' => ''] %%
+    %% include file="Master/BreadCrumb.htm" pageList=$pageList %%
+
+    <div class="container" id="security">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="title-page">セキュリティポリシー</h1>
+                <h2 class="title-sub mt-3">情報セキュリティ基本方針</h2>
+                <p>
+                    %% $COMPANY.name %%（以下「当社」）は、
+                    当社およびお客様からお預かりした情報資産を事故・災害・犯罪などの脅威から守るべく、
+                    以下の方針に基づき情報セキュリティの継続的な維持・向上に取り組みます。
+                </p>
+                <dl>
+                    <dt>1. 経営者の責任</dt>
+                    <dd>当社は、経営者主導で組織的かつ継続的に情報セキュリティの改善・向上に努めます。</dd>
+
+                    <dt>2. 社内体制の整備</dt>
+                    <dd>当社は、情報セキュリティ実施方針を定め、同方針達成に向けて情報セキュリティの推進体制および責任体制を確立します。</dd>
+
+                    <dt>3. 従業員の取組み</dt>
+                    <dd>当社の従業員は、情報セキュリティの重要性を認識し、情報セキュリティに関する各規程を熟知、遵守します。</dd>
+
+                    <dt>4. 法令および契約上の要求事項の遵守</dt>
+                    <dd>当社は、情報セキュリティに関わる法令、規制、規範、契約上の義務を遵守します。</dd>
+
+                    <dt>5.違反および事故への対応</dt>
+                    <dd>当社は、情報セキュリティに関わる法令違反、契約違反および事故が発生した場合には適切に対処し、再発防止に努めます。</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+

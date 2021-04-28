@@ -1,0 +1,80 @@
+<h1 class="title-page">サイト基本情報</h1>
+
+<div class="table-responsive">
+    <table class="table wvTblKeyVal tbl-vline-rl">
+        <tbody>
+            <tr><td>アプリ名</td><td>%% $SITE_NAME %%</td></tr>
+            <tr><td>ドメイン</td><td>%% $DOMAIN %%</td></tr>
+            <tr><td>システム環境</td><td>%% $baseInfo.ENV_ID %%</td></tr>
+            <tr>
+                <td>
+                    システム状態
+                </td>
+                <td>
+                    %% $baseInfo.systemStatus %%
+                    %% if $baseInfo.systemStatus !== '開発中' %%
+                        <a href="?p=%% $pageName %%&mode=update&status=開発中"
+                           class="btn btn-outline-secondary confirmRegist">開発中へ</a>
+                        <div class="wv-d-none">システム状態を開発中へ変更していいですか？</div>
+                    %% /if %%
+                    %% if $baseInfo.systemStatus !== '稼働中' %%
+                        <a href="?p=%% $pageName %%&mode=update&status=稼働中"
+                           class="btn btn-outline-secondary confirmRegist">稼働中へ</a>
+                        <div class="wv-d-none">システム状態を稼働中へ変更していいですか？</div>
+                    %% /if %%
+                    %% if $baseInfo.systemStatus !== 'メンテナンス中' %%
+                        <a href="?p=%% $pageName %%&mode=update&status=メンテナンス中"
+                           class="btn btn-outline-secondary confirmRegist">メンテナンス中へ</a>
+                        <div class="wv-d-none">システム状態をメンテナンス中へ変更していいですか？</div>
+                    %% /if %%
+                </td>
+            </tr>
+            <tr>
+                <td>デバッグユーザーID</td>
+                <td>
+                    %% foreach from=$baseInfo.debugUserId item=val %%
+                        %% $val %%<br>
+                    %% /foreach %%
+                </td>
+            </tr>
+            <tr>
+                <td>デバッグ用IP</td>
+                <td>
+                    %% foreach from=$baseInfo.debugIp item=val %%
+                        %% $val %%<br>
+                    %% /foreach %%
+                </td>
+            </tr>
+            <tr><td>コピーライト</td><td>%% $COPYRIGHT %%</td></tr>
+            <tr>
+                <td>メールアドレス</td>
+                <td>
+                    ユーザーメール送信元：%% $baseInfo.Mail.fromSite %%<br>
+                    サイト管理者（運用者）宛メール送信先：%% $baseInfo.Mail.toAdmin %%<br>
+                    システム管理者宛メール送信先：%% $baseInfo.Mail.toSystemAdmin %%<br>
+                    システム管理者宛アラートメールの送信先：%% $baseInfo.Mail.toSystemAlert %%<br>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
