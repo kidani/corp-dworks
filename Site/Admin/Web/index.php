@@ -19,6 +19,7 @@ define('WVFW_ROOT', realpath(__DIR__ . '/../../..'));
 define('WEB_ROOT', 'ADMIN');
 
 // フレームワーク共通
+set_include_path(get_include_path() . PATH_SEPARATOR . '/usr/share/pear');	// エックスサーバの場合必須
 require_once 'HTTP/Request2.php';
 require_once (WVFW_ROOT . '/Lib/Scraping/phpQuery-onefile.php');
 require_once (WVFW_ROOT . '/Lib/Smarty/Smarty.class.php');

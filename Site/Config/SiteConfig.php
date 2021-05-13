@@ -86,7 +86,7 @@ class SiteConfig {
 		// 管理画面URL
 		$subDomainAdmin = $confWork['Base']['SUB_DOMAIN_ADMIN'];						// 管理画面サブドメイン
 		$domainAdmin = "{$subDomainAdmin}.{$confWork['Base']['ROOT_DOMAIN']}";			// 管理画面ドメイン
-		self::$conf['SITE_URL_ADMIN'] = "http://{$domainAdmin}/";						// 管理画面URL
+		self::$conf['SITE_URL_ADMIN'] = "https://{$domainAdmin}/";						// 管理画面URL（HTTPSに注意！）
 
 		// クエリ文字列
 		// utm_source=google など広告経路トラッキング用
