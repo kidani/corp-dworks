@@ -45,6 +45,7 @@ $siteConfig = new SiteConfig();
 $userConfig = new UserConfig();
 
 if (WV_DEBUG) trace("index.php START");
+if (WV_DEBUG) trace("index.php START");
 
 //------------------------------------------------
 // アクセス制御
