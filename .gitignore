@@ -32,3 +32,5 @@
 /Site/User/Web/ads.txt
 /Site/User/Web/BingSiteAuth.xml
 /Site/User/Web/.htaccess
+/Site/User/Web/xmailinglist/*
+/Site/User/Web/admin_org/*
