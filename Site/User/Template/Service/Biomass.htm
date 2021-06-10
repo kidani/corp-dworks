@@ -1,0 +1,102 @@
+%%* meta タグ書き換え *%%
+<input type="hidden" name="metaTitle" value="%% $SITE_NAME %% | サービス">
+<input type="hidden" name="metaKeywords" value="サービス,%% $metaKeywordsMin %%">
+
+%%* ヘッダーバナー *%%
+<div>%%* この div は重要なので削除しないこと！ *%%
+    <div class="page-head-img" style="height: 40vh;">
+        <div class="boxImage h-short"
+             style="background-image: url('/images/top/header_biomass2.jpg'); background-position: center bottom;">
+            <div class="boxText">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="main">
+
+    %%* パンくずリスト *%%
+    %% assign var=pageList value=['トップ' => "$SITE_URL", 'サービス' => ''] %%
+    %% include file="Master/BreadCrumb.htm" pageList=$pageList %%
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h1 class="title-page mb-5">なぜ今木質バイオマス発電が必要か？</h1>
+                <section>
+                    <div class="row box-service">
+                        <div class="offset-md-2 col-md-8 lead" data-anijs="if: scroll, on:window, do: fadeInLeft animated, before: scrollReveal">
+                            <p>バイオマス発電には２つの大きな役目があります。本来焼却処分されていた廃木材の有効利用と、
+                                原材料の固定価格買取によって木材の価格低迷で減少する林業従事者を救済することです。
+                                これによって、二酸化炭素排出量の増加や林業の衰退に歯止めがかかると考えられています。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <h1 class="title-page mb-5">サービスの流れ</h1>
+                <section>
+                    <div class="row box-service">
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInLeft animated, before: scrollReveal">
+                            <figure class="d-flex align-items-center justify-content-center">
+                                <img src="/images/service/biomass/haul2.png"
+                                     class="w-75" alt="各発生材受け入れ"></figure>
+                        </div>
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInRight animated, before: scrollReveal">
+                            <h2 class="title-sub">各発生材受け入れ</h2>
+                            <p class="detail">今まで焼却処分されていた廃木材の剪定枝から根株、
+                                竹類など各品目が受け入れ可能です。 台貫による計量、立米計量も可能です。
+                                堆肥としてリサイクルして有効活用できます。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="row box-service">
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInRight animated, before: scrollReveal">
+                            <h2 class="title-sub">粉砕・チップ</h2>
+                            <p class="detail">持ち込まれた樹木のうち、太い幹や根株などは一度粉砕します。
+                                粉砕処理後に、剪定時の使用など細かい枝等を含め、粉砕機でチップ化します。
+                                チップ化することで用途が増えますので、リサイクル資源として広く活用され、
+                                またゴミも減量することができます。</p>
+                        </div>
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInLeft animated, before: scrollReveal">
+                            <figure class="d-flex align-items-center justify-content-center">
+                                <img src="/images/service/biomass/truck1.jpg"
+                                     class="w-75" alt="粉砕・チップ"></figure>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="row box-service">
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInLeft animated, before: scrollReveal">
+                            <figure class="d-flex align-items-center justify-content-center">
+                                <img src="/images/service/biomass/bio2.jpg"
+                                     class="w-75" alt="再資源活用"></figure>
+                        </div>
+                        <div class="col-md-6" data-anijs="if: scroll, on:window, do: fadeInRight animated, before: scrollReveal">
+                            <h2 class="title-sub">再資源活用</h2>
+                            <p class="detail">これらはバイオマス発電、農耕地の土質改良・堆肥製造の原料として活用されます。
+                                チップを発酵させ堆肥化させるなどの処理を行います。</p>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+    %%* お問い合わせバナー *%%
+    <div>%%* この div は重要なので削除しないこと！ *%%
+        <div class="page-head-img contact-link" style="height: 40vh;">
+            <div class="boxImage h-short" style="background-image: url('/images/top/bg8.jpg'); background-position: right center;">
+                <div class="boxText">
+                    <p>各種お問い合わせはこちら</p>
+                    <p><a href="/Contact/Contact" class="btn btn-primary w-50">問い合わせる</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
