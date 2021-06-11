@@ -28,27 +28,49 @@
                 <table class="table mb-5">
                     <tr>
                         <td style="width: 30%;">社名</td>
-                        <td>%% $COMPANY.name %%</td>
+                        <td>%% $COMPANY.name %%（%% $COPYRIGHT %%）</td>
                     </tr>
                     <tr>
                         <td>代表取締役社長</td>
                         <td>%% $COMPANY.admin %%</td>
                     </tr>
-                    %%*<tr>
-                        <td>設立</td>
-                        <td>2014年1月30日</td>
-                    </tr>*%%
                     <tr>
-                        <td>事業内容</td>
-                        <td>エコ関連商品販売、メディア運営、不動産・保険など各種コンサルティング</td>
+                        <td>設立</td>
+                        <td>2021年5月</td>
                     </tr>
                     <tr>
-                        <td>古物商許可証</td>
-                        <td>東京都公安委員会 304381806991号</td>
+                        <td>資本金</td>
+                        <td>500万円</td>
+                    </tr>
+                    <tr>
+                        <td>事業内容</td>
+                        <td>
+                            <h6>■環境循環型事業</h6>
+                            <p class="mb-1">産廃される木材等の資源化、バイオマス発電･熱利用事業等を目的とした発電･熱供給事業会社へ供給販売</p>
+                            <h6>■アグリ事業</h6>
+                            <p class="mb-1">腐葉土の開発生産及び販売</p>
+                            <h6>■物流事業</h6>
+                            <p class="mb-1">資源となる木材・腐葉土等の収集及び運搬</p>
+                        </td>
                     </tr>
                     <tr>
                         <td>メールアドレス</td>
                         <td>%% $COMPANY.mail %%</td>
+                    </tr>
+                    <tr>
+                        <td>主取引銀行</td>
+                        <td>りそな銀行 福生支店</td>
+                    </tr>
+                    <tr>
+                        <td>グループ企業</td>
+                        <td>
+                            <ul class="list-unstyled">
+                                <li><a href="https://www.daishin-rk.co.jp/">株式会社大進緑建</a></li>
+                                <li><a href="https://dsrk-planning.co.jp/">DRプランニング株式会社</a></li>
+                                <li><a href="https://eco-eco.biz/">エコ＆エコ株式会社</a></li>
+                                <li><a href="http://iotg.co.jp/">株式会社アイオーティー技研</a></li>
+                            </ul>
+                        </td>
                     </tr>
                 </table>
 
@@ -64,10 +86,27 @@
                         <td>%% $COMPANY.tel %%</td>
                     </tr>
                 </table>
-                %%* GOOGLE MAP 東京本社 *%%
                 <div class="col-sm-12 mb-5" data-anijs="if: scroll, on:window, do: zoomInRight animated, before: scrollReveal">
                     <div id="map">
                         <iframe src="https://maps.google.co.jp/maps?&output=embed&q=%% $COMPANY.address %%"></iframe>
+                    </div>
+                </div>
+
+                %%* 新宿オフィス *%%
+                <h2 class="title-sub">新宿オフィス</h2>
+                <table class="table">
+                    <tr>
+                        <td>所在地</td>
+                        <td>〒160-0021<br>東京都新宿区歌舞伎町1-1-19 同栄新宿ビル6階</td>
+                    </tr>
+                    <tr>
+                        <td>TEL・FAX</td>
+                        <td>TEL：03-6265-9146 FAX：03-6265-9146</td>
+                    </tr>
+                </table>
+                <div class="col-sm-12 mb-5" data-anijs="if: scroll, on:window, do: zoomInRight animated, before: scrollReveal">
+                    <div id="map">
+                        <iframe src="https://maps.google.co.jp/maps?&output=embed&q=東京都新宿区歌舞伎町1-1-19"></iframe>
                     </div>
                 </div>
 
