@@ -46,6 +46,9 @@ $userConfig = new UserConfig();
 
 if (WV_DEBUG) trace("index.php START");
 
+header("HTTP/1.0 404 Not Found");
+exit;
+
 //------------------------------------------------
 // アクセス制御
 //------------------------------------------------
